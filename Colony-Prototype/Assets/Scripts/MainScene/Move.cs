@@ -11,16 +11,16 @@ public class Move : Movement {
     }
 
     protected override void UpdateState() {
-        if (currentState != STAND) MoveByState(currentState); 
+        if (currentState != MovementState.STAND) MoveByState(currentState); 
     } 
 
-    private void MoveByState(string state) {
+    private void MoveByState(MovementState state) {
         float moveX = 0.0f;
         float moveY = 0.0f;
-        if (state == RIGHT_WALK) moveX = Speed*Time.deltaTime;
-        if (state == LEFT_WALK) moveX = -Speed*Time.deltaTime;
-        if (state == UP_WALK) moveY = Speed*Time.deltaTime;
-        if (state == DOWN_WALK) moveY = -Speed*Time.deltaTime; 
+        if (state == MovementState.RIGHT_WALK) moveX = Speed*Time.deltaTime;
+        if (state == MovementState.LEFT_WALK) moveX = -Speed*Time.deltaTime;
+        if (state == MovementState.UP_WALK) moveY = Speed*Time.deltaTime;
+        if (state == MovementState.DOWN_WALK) moveY = -Speed*Time.deltaTime; 
         MoveDelta(moveX, moveY);
     }
 

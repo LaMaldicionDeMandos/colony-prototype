@@ -11,9 +11,9 @@ public class WalkAnimarion : Movement {
         base.Start();
     }
 
-    protected override void ChangeState(string state) {
-        foreach (string _state in states) {
-            animator.SetBool(_state, _state == state);
+    protected override void ChangeState(MovementState state) {
+        foreach (MovementState _state in states) {
+            animator.SetBool(_state.ToFriendlyString(), _state == state);
         }
     } 
 }
