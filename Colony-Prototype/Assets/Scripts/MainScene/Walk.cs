@@ -4,31 +4,46 @@ using UnityEngine;
 
 public class Walk : MonoBehaviour {
 
+    private static string LEFT_WALK = "left_walk";
+    private static string UP_WALK = "up_walk";
+    private static string RIGHT_WALK = "right_walk";
+    private static string DOWN_WALK = "down_walk";
+    private static string STAND = "stand";
+    private static string[] states = new string[] {LEFT_WALK, UP_WALK, RIGHT_WALK, DOWN_WALK, STAND};
+
     private Animator animator;
+    private string currentState;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        currentState = STAND;
     }
 
     // Update is called once per frame
     void Update()
-    {
-        animator.SetBool("left_walk", false);
-        animator.SetBool("up_walk", false);
-        animator.SetBool("right_walk", false);
-        animator.SetBool("down_walk", false);
+    {   
         if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-            animator.SetBool("left_walk", true);
+            SetAnimationState(LEFT_WALK);
         }
         if (Input.GetKeyDown(KeyCode.UpArrow)) {
-            animator.SetBool("up_walk", true);
+            SetAnimationState(UP_WALK);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow)) {
-            animator.SetBool("down_walk", true);
+            SetAnimationState(DOWN_WALK);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
-            animator.SetBool("right_walk", true);
+            SetAnimationState(RIGHT_WALK);
+        }
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            SetAnimationState(STAND);
         }
     }
+
+    private void SetAnimationState(string state) {
+        foreach (string _state in states) {
+            animator.SetBool(_state, _state == state);
+        }
+        currentState = state;
+    } 
 }
