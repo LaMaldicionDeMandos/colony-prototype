@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Move : MonoBehaviour, Movement {
     public float Speed = 1.0f;
-    private Vector3 currentDirection = new Vector3(0.0f, 0.0f, 0.0f);
+    private Vector3 currentDirection = Vector3.zero;
 
     void Start() {}
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WalkAnimation : MonoBehaviour, Movement {
-    private static Vector3 FORWARD_DIRECTION = new Vector3(1.0f, 0.0f, 0.0f);
+    private static Vector3 FORWARD_DIRECTION = Vector3.right;
     private static float MIN_UP_ANGLE = 45.0f;
     private static float MAX_UP_ANGLE = 135.0f;
     private static float MIN_DOWN_ANGLE = 225.0f;
@@ -30,16 +30,16 @@ public class WalkAnimation : MonoBehaviour, Movement {
     }
 
     public void UpdateDirection(Vector3 direction) {
-        if (IsStand(direction) && currentState != MovementState.STAND) {
+        if (IsStand(direction)) {
             ChangeState(MovementState.STAND);
-            return;
+        } else {
+            MovementState state = GetDirectionByAngle(GetAngle(direction));
+            if (state != currentState) ChangeState(state);
         }
-        MovementState state = GetDirectionByAngle(GetAngle(direction));
-        if (state != currentState) ChangeState(state);
     }
 
     private bool IsStand(Vector3 direction) {
-        return direction.x == 0.0f && direction.y == 0;
+        return direction == Vector3.zero;
     }
 
     private float GetAngle(Vector3 direction) {
