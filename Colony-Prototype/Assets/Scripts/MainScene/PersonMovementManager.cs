@@ -5,19 +5,20 @@ using UnityEngine;
 public class PersonMovementManager : MonoBehaviour {
     private static int PRIMARY_MOUSE_BUTTON = 0;
 
-    private Movement[] movementComponents;
+    private AbstractMovement[] movementComponents;
     void Start() {
-        movementComponents = GetComponents<Movement>();
+        movementComponents = GetComponents<AbstractMovement>();
     }
 
     void Update() {
         if (Input.GetMouseButtonDown(PRIMARY_MOUSE_BUTTON)) {
             Vector3 mousePosition =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log("Me muevo mi posicion " + transform.position + " -- Hasta: " + mousePosition);
-            if (mousePosition.x > transform.position.x) {
-                SetCurrentState(MovementState.RIGHT_WALK);                
-            } else {
-                SetCurrentState(MovementState.LEFT_WALK);
+            mousePosition.z = 0;
+            Vector3 direction = Vector3.Normalize(mousePosition - transform.position); 
+            Debug.Log("Me muevo mi posicion " + transform.position + " -- Hasta: " + mousePosition + " -- Direccion: " + direction);
+            foreach (AbstractMovement component in movementComponents) {
+                Debug.Log("Ir hacia: " + direction);
+                component.UpdateDirection(direction);
             }
         }
         /*
@@ -37,11 +38,5 @@ public class PersonMovementManager : MonoBehaviour {
             SetCurrentState(MovementState.STAND);
         } 
         */       
-    }
-
-    private void SetCurrentState(MovementState state) {
-        foreach (Movement component in movementComponents) {
-            component.SetState(state);
-        }
     }
 }

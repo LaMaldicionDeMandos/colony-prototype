@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour {
+    // Deprecated
     protected static MovementState[] states = new MovementState[] {
         MovementState.LEFT_WALK, 
         MovementState.UP_WALK, 
@@ -11,22 +12,25 @@ public class Movement : MonoBehaviour {
         MovementState.STAND
     };
 
+    // Deprecated
     protected MovementState currentState;
 
     protected virtual void Start() {
+        //Deprecated
         currentState = MovementState.STAND;
     }
 
-    // Update is called once per frame
     void Update()
     {   
         UpdateState();
     }
 
+    //Deprecated
     public void SetState(MovementState state) {
         if (currentState != state) SetCurrentState(state);
     }
 
+    //Deprecated
     private void SetCurrentState(MovementState state) {
         ChangeState(state);
         currentState = state;
