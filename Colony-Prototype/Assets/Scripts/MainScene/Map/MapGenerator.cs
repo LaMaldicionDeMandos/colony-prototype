@@ -40,7 +40,18 @@ public class MapGenerator : MonoBehaviour {
         new MapElement(-1, -4, 0),
         new MapElement(0, -5, 0),
         new MapElement(0, -4, 0),
-        new MapElement(1, -5, 0),        
+        new MapElement(1, -5, 0),
+        new MapElement(-1, -3, 1),
+        new MapElement(0, -3, 1),
+        new MapElement(1, -4, 1),
+        new MapElement(1, 2, 2),
+        new MapElement(2, 3, 2),
+        new MapElement(3, 4, 2),
+        new MapElement(3, 5, 2),
+        new MapElement(3, 3, 3),
+        new MapElement(2, 2, 3),
+        new MapElement(1, -3, 3),
+        new MapElement(-1, -2, 3)        
     };
 
     private Tilemap tilemap;
