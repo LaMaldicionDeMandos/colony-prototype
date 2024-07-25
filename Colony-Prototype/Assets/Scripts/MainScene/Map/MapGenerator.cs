@@ -14,37 +14,9 @@ public class MapGenerator : MonoBehaviour {
     public int MapHeigth;
     public float NoiseScale;
 
-    private static int[,] BASES = new int[,] {
-            {3,3,3,0,0,0,0,0,0,0,0},
-            {3,3,1,1,1,0,0,0,0,0,2},
-            {3,3,3,0,1,1,0,0,0,2,1},
-            {3,3,3,0,0,1,1,1,1,1,1},
-            {3,3,0,0,0,0,1,1,1,1,1},
-            {3,3,0,0,0,0,0,1,1,1,1},
-            {3,0,0,0,0,0,0,0,2,2,2},
-            {0,0,0,0,0,0,0,0,0,2,2},
-            {0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,0}
-        };
+    private System.Random rng;
 
     private static MapElement[] ELEMENTS = new MapElement[] { 
-        //new MapElement(-5, -5, 0),
-        //new MapElement(-5, -4, 0),
-        //new MapElement(-5, -3, 0),
-        //new MapElement(-4, -5, 0),
-        //new MapElement(-4, -4, 0),
-        //new MapElement(-3, -5, 0),
-        //new MapElement(-3, -4, 0),
-        //new MapElement(-3, -3, 0),
-        //new MapElement(-2, -5, 0),
-        //new MapElement(-2, -4, 0),
-        //new MapElement(-2, -3, 0),
-        //new MapElement(-1, -5, 0),
-        //new MapElement(-1, -4, 0),
-        //new MapElement(0, -5, 0),
-        //new MapElement(0, -4, 0),
-        //new MapElement(1, -5, 0),
         new MapElement(-1, -3, 1),
         new MapElement(0, -3, 1),
         new MapElement(1, -4, 1),
@@ -80,21 +52,39 @@ public class MapGenerator : MonoBehaviour {
     private List<GameObject> gameObjects;
 
     void Start() {
-        MakeMap();
-        MakeThinks();
+        int seed = Random.Range(0, 10000);
+        MakeMap(seed);
+ //       MakeThinks();
     }
 
     void Update() {
         
     }
 
-    private void MakeMap() { 
+    private float[,] GenerateNoiseMap(int mapWidth, int mapHeigth, float elevationScale, int seed) {
+        float[,] noiseMap = new float[mapWidth, mapHeigth];
+        System.Random rand = new System.Random(seed);
+
+        float offsetX = rand.Next(-100000, 100000);
+        float offsetY = rand.Next(-100000, 100000);
+
+        for (int i = 0; i < mapWidth; i++) {
+            for (int j = 0; j < mapHeigth; j++) {
+                float x = (float)i / mapWidth * elevationScale + offsetX;
+                float y = (float)j / mapHeigth * elevationScale + offsetY;
+                noiseMap[i, j] = Mathf.PerlinNoise(x, y);
+            }
+        }
+
+        return noiseMap;
+    }
+
+    private void MakeMap(int seed) {
+        float[,] noiseMap = GenerateNoiseMap(MapWidth, MapHeigth, NoiseScale, seed); 
         TileBase[,] tiles = new TileBase[MapWidth, MapHeigth];
         for(int i = 0; i < MapWidth; i++) {
             for(int j = 0; j < MapHeigth; j++) {
-                float x = (float)i/MapWidth * NoiseScale;
-                float y = (float)j/MapHeigth * NoiseScale;
-                int terrainIndex = (int)Mathf.Floor(Mathf.PerlinNoise(x, y) * 4);
+                int terrainIndex = (int)Mathf.Floor(Mathf.Clamp(noiseMap[i, j], 0.0f, 1.0f) * 4);
                 tiles[i, j] = tile[terrainIndex];
             }
         }
