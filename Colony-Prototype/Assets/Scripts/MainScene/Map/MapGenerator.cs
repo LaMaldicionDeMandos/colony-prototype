@@ -20,34 +20,13 @@ public class MapGenerator : MonoBehaviour {
     public float GrassFactor;
     public float MoutainFactor;
 
-    private System.Random rng;
+    public double StonePercent;
+    public double MountainPercent;
+    public double RockPercent;
+    public double BushPercent;
+    public double TreePercent;
 
-    private static MapElement[] ELEMENTS = new MapElement[] { 
-        new MapElement(-1, -3, 1),
-        new MapElement(0, -3, 1),
-        new MapElement(1, -4, 1),
-        new MapElement(1, 2, 2),
-        new MapElement(2, 3, 2),
-        new MapElement(3, 4, 2),
-        new MapElement(3, 5, 2),
-        new MapElement(3, 3, 3),
-        new MapElement(2, 2, 3),
-        new MapElement(1, -3, 3),
-        new MapElement(-1, -2, 3),
-        new MapElement(5, -5, 4),        
-        new MapElement(4, -5, 4),
-        new MapElement(3, -5, 4),                
-        new MapElement(5, -4, 4),
-        new MapElement(4, -4, 4),
-        new MapElement(5, -3, 4),
-        new MapElement(4, -3, 4),
-        new MapElement(3, -3, 4),
-        new MapElement(2, -3, 4),
-        new MapElement(5, -2, 4),
-        new MapElement(4, -2, 4),
-        new MapElement(3, -2, 4),
-        new MapElement(2, -2, 4)               
-    };
+    private System.Random rng;
 
     private Tilemap tilemap;
     private TileBase[,] map;
@@ -59,6 +38,7 @@ public class MapGenerator : MonoBehaviour {
 
     void Start() {
         int seed = UnityEngine.Random.Range(0, 10000);
+        rng = new System.Random(seed);
         float sum = WaterFactor + SandFactor + GrassFactor + MoutainFactor;
         float waterLimit = WaterFactor/sum;
         float sandLimit = waterLimit + SandFactor/sum;
@@ -71,7 +51,7 @@ public class MapGenerator : MonoBehaviour {
             new Tuple<float, float>(grassLimit, mountainLimit)
         };
         MakeMap(seed, ranges);
- //       MakeThinks();
+        MakeThings();
     }
 
     void Update() {
@@ -120,10 +100,77 @@ public class MapGenerator : MonoBehaviour {
         return 3;
     }
 
-    private void MakeThinks() {
+    private void MakeThings() {
         gameObjects = new List<GameObject>();
-        foreach(MapElement element in ELEMENTS) {
-            gameObjects.Add(Instantiate(mapElements[element.elementIndex], new Vector3(element.x, element.y, Z_PROSITION), Quaternion.identity));
+        for(int x = -MapWidth/2; x < (MapWidth - MapWidth/2); x++) {
+            for(int y = -MapHeigth/2; y < (MapHeigth - MapHeigth/2); y++) {
+                TileBase tile = tilemap.GetTile(new Vector3Int(x, y, 0));
+                AddThingToTile(tile, x, y);
+            }
         }
     }
+
+    private void AddThingToTile(TileBase tile, int x, int y) {
+        if (CanAddMountain(tile)) TryToAddMountain(tile, x, y);
+        if (CanAddRock(tile)) TryToAddRock(tile, x, y);
+        if (CanAddBush(tile)) TryToAddBush(tile, x, y);
+        if (CanAddStone(tile)) TryToAddStone(tile, x, y);
+        if (CanAddTree(tile)) TryToAddTree(tile, x, y);
+    }
+
+    private bool CanAddMountain(TileBase tile) {
+        return "Montain_Tile_Rule" == tile.name;
+    }
+
+    private bool CanAddRock(TileBase tile) {
+        return "Sand_Tile_Rule" == tile.name || "Grass_Tile_Rule" == tile.name;
+    }
+
+    private bool CanAddBush(TileBase tile) {
+        return "Grass_Tile_Rule" == tile.name;
+    }
+
+    private bool CanAddStone(TileBase tile) {
+        return "Sand_Tile_Rule" == tile.name;
+    }
+
+    private bool CanAddTree(TileBase tile) {
+        return "Grass_Tile_Rule" == tile.name;
+    }
+
+    private void TryToAddMountain(TileBase tile, int x, int y) {
+        double r = rng.NextDouble();
+        if (r < MountainPercent) {
+            gameObjects.Add(Instantiate(mapElements[0], new Vector3(x, y, Z_PROSITION), Quaternion.identity));
+        }
+    }
+
+    private void TryToAddRock(TileBase tile, int x, int y) {
+        double r = rng.NextDouble();
+        if (r < RockPercent) {
+            gameObjects.Add(Instantiate(mapElements[1], new Vector3(x, y, Z_PROSITION), Quaternion.identity));
+        }
+    }
+
+    private void TryToAddBush(TileBase tile, int x, int y) {
+        double r = rng.NextDouble();
+        if (r < BushPercent) {
+            gameObjects.Add(Instantiate(mapElements[2], new Vector3(x, y, Z_PROSITION), Quaternion.identity));
+        }
+    }
+
+    private void TryToAddStone(TileBase tile, int x, int y) {
+        double r = rng.NextDouble();
+        if (r < StonePercent) {
+            gameObjects.Add(Instantiate(mapElements[3], new Vector3(x, y, Z_PROSITION), Quaternion.identity));
+        }
+    }
+
+    private void TryToAddTree(TileBase tile, int x, int y) {
+        double r = rng.NextDouble();
+        if (r < TreePercent) {
+            gameObjects.Add(Instantiate(mapElements[4], new Vector3(x, y, Z_PROSITION), Quaternion.identity));
+        }
+    }
+
 }
