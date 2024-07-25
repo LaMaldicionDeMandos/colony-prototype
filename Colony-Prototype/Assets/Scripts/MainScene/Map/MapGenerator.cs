@@ -9,7 +9,7 @@ public record MapElement(
     int elementIndex);
 
 public class MapGenerator : MonoBehaviour {
-    private static float Z_PROSITION = -0.001f;
+    private static float Z_PROSITION = 0.0f;
     private static int[,] BASES = new int[,] {
             {3,3,3,0,0,0,0,0,0,0,0},
             {3,3,1,1,1,0,0,0,0,0,2},
@@ -51,7 +51,20 @@ public class MapGenerator : MonoBehaviour {
         new MapElement(3, 3, 3),
         new MapElement(2, 2, 3),
         new MapElement(1, -3, 3),
-        new MapElement(-1, -2, 3)        
+        new MapElement(-1, -2, 3),
+        new MapElement(5, -5, 4),        
+        new MapElement(4, -5, 4),
+        new MapElement(3, -5, 4),                
+        new MapElement(5, -4, 4),
+        new MapElement(4, -4, 4),
+        new MapElement(5, -3, 4),
+        new MapElement(4, -3, 4),
+        new MapElement(3, -3, 4),
+        new MapElement(2, -3, 4),
+        new MapElement(5, -2, 4),
+        new MapElement(4, -2, 4),
+        new MapElement(3, -2, 4),
+        new MapElement(2, -2, 4)               
     };
 
     private Tilemap tilemap;
