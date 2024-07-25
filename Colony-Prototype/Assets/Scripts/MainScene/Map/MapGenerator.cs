@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,11 @@ public class MapGenerator : MonoBehaviour {
     public int MapWidth;
     public int MapHeigth;
     public float NoiseScale;
+
+    public float WaterFactor;
+    public float SandFactor;
+    public float GrassFactor;
+    public float MoutainFactor;
 
     private System.Random rng;
 
@@ -52,8 +58,19 @@ public class MapGenerator : MonoBehaviour {
     private List<GameObject> gameObjects;
 
     void Start() {
-        int seed = Random.Range(0, 10000);
-        MakeMap(seed);
+        int seed = UnityEngine.Random.Range(0, 10000);
+        float sum = WaterFactor + SandFactor + GrassFactor + MoutainFactor;
+        float waterLimit = WaterFactor/sum;
+        float sandLimit = waterLimit + SandFactor/sum;
+        float grassLimit = sandLimit + GrassFactor/sum;
+        float mountainLimit = grassLimit + MoutainFactor/sum;
+        Tuple<float, float>[] ranges = new Tuple<float, float>[] {
+            new Tuple<float, float>(0.0f, waterLimit),
+            new Tuple<float, float>(waterLimit, sandLimit),
+            new Tuple<float, float>(sandLimit, grassLimit),
+            new Tuple<float, float>(grassLimit, mountainLimit)
+        };
+        MakeMap(seed, ranges);
  //       MakeThinks();
     }
 
@@ -79,12 +96,12 @@ public class MapGenerator : MonoBehaviour {
         return noiseMap;
     }
 
-    private void MakeMap(int seed) {
+    private void MakeMap(int seed, Tuple<float, float>[] terrainRanges) {
         float[,] noiseMap = GenerateNoiseMap(MapWidth, MapHeigth, NoiseScale, seed); 
         TileBase[,] tiles = new TileBase[MapWidth, MapHeigth];
         for(int i = 0; i < MapWidth; i++) {
             for(int j = 0; j < MapHeigth; j++) {
-                int terrainIndex = (int)Mathf.Floor(Mathf.Clamp(noiseMap[i, j], 0.0f, 1.0f) * 4);
+                int terrainIndex = GetTerrainIndex(Mathf.Clamp(noiseMap[i, j], 0.0f, 1.0f), terrainRanges);
                 tiles[i, j] = tile[terrainIndex];
             }
         }
@@ -94,6 +111,13 @@ public class MapGenerator : MonoBehaviour {
                 tilemap.SetTile(new Vector3Int(x, y, 0), tiles[x + MapWidth/2, y + MapHeigth/2]);    
             }
         }
+    }
+
+    private int GetTerrainIndex(float noise, Tuple<float, float>[] ranges) {
+        for(int i = 0; i < 4; i++) {
+            if (noise <= ranges[i].Item2) return i;
+        }
+        return 3;
     }
 
     private void MakeThinks() {
