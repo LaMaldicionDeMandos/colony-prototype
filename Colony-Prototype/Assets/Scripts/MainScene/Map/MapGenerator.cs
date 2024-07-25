@@ -4,11 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public record MapElement(
-    int x,
-    int y,
-    int elementIndex);
-
 public class MapGenerator : MonoBehaviour {
     private static float Z_PROSITION = 0.0f;
     public int MapWidth;
@@ -31,6 +26,9 @@ public class MapGenerator : MonoBehaviour {
     private Tilemap tilemap;
     private TileBase[,] map;
     public TileBase[] tile;
+
+    [SerializeField]
+    public ElementSpawnSpec[] ElementSpecs;
 
     public GameObject[] mapElements;
 
