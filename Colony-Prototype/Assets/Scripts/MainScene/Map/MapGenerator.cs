@@ -10,6 +10,10 @@ public record MapElement(
 
 public class MapGenerator : MonoBehaviour {
     private static float Z_PROSITION = 0.0f;
+    public int MapWidth;
+    public int MapHeigth;
+    public float NoiseScale;
+
     private static int[,] BASES = new int[,] {
             {3,3,3,0,0,0,0,0,0,0,0},
             {3,3,1,1,1,0,0,0,0,0,2},
@@ -25,22 +29,22 @@ public class MapGenerator : MonoBehaviour {
         };
 
     private static MapElement[] ELEMENTS = new MapElement[] { 
-        new MapElement(-5, -5, 0),
-        new MapElement(-5, -4, 0),
-        new MapElement(-5, -3, 0),
-        new MapElement(-4, -5, 0),
-        new MapElement(-4, -4, 0),
-        new MapElement(-3, -5, 0),
-        new MapElement(-3, -4, 0),
-        new MapElement(-3, -3, 0),
-        new MapElement(-2, -5, 0),
-        new MapElement(-2, -4, 0),
-        new MapElement(-2, -3, 0),
-        new MapElement(-1, -5, 0),
-        new MapElement(-1, -4, 0),
-        new MapElement(0, -5, 0),
-        new MapElement(0, -4, 0),
-        new MapElement(1, -5, 0),
+        //new MapElement(-5, -5, 0),
+        //new MapElement(-5, -4, 0),
+        //new MapElement(-5, -3, 0),
+        //new MapElement(-4, -5, 0),
+        //new MapElement(-4, -4, 0),
+        //new MapElement(-3, -5, 0),
+        //new MapElement(-3, -4, 0),
+        //new MapElement(-3, -3, 0),
+        //new MapElement(-2, -5, 0),
+        //new MapElement(-2, -4, 0),
+        //new MapElement(-2, -3, 0),
+        //new MapElement(-1, -5, 0),
+        //new MapElement(-1, -4, 0),
+        //new MapElement(0, -5, 0),
+        //new MapElement(0, -4, 0),
+        //new MapElement(1, -5, 0),
         new MapElement(-1, -3, 1),
         new MapElement(0, -3, 1),
         new MapElement(1, -4, 1),
@@ -85,16 +89,19 @@ public class MapGenerator : MonoBehaviour {
     }
 
     private void MakeMap() { 
-        TileBase[,] tiles = new TileBase[11, 11];
-        for(int i = 0; i < 11; i++) {
-            for(int j = 0; j < 11; j++) {
-                tiles[i, j] = tile[BASES[i, j]];
+        TileBase[,] tiles = new TileBase[MapWidth, MapHeigth];
+        for(int i = 0; i < MapWidth; i++) {
+            for(int j = 0; j < MapHeigth; j++) {
+                float x = (float)i/MapWidth * NoiseScale;
+                float y = (float)j/MapHeigth * NoiseScale;
+                int terrainIndex = (int)Mathf.Floor(Mathf.PerlinNoise(x, y) * 4);
+                tiles[i, j] = tile[terrainIndex];
             }
         }
         tilemap = GetComponent<Tilemap>();
-        for(int x = -5; x < 6; x++) {
-            for(int y = -5; y < 6; y++) {
-                tilemap.SetTile(new Vector3Int(x, y, 0), tiles[x + 5, y + 5]);    
+        for(int x = -MapWidth/2; x < (MapWidth - MapWidth/2); x++) {
+            for(int y = -MapHeigth/2; y < (MapHeigth - MapHeigth/2); y++) {
+                tilemap.SetTile(new Vector3Int(x, y, 0), tiles[x + MapWidth/2, y + MapHeigth/2]);    
             }
         }
     }
