@@ -320,8 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d477c025e34914d92755111d019580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapWidth: 20
-  MapHeigth: 20
+  MapWidth: 100
+  MapHeigth: 100
   NoiseScale: 2.2
   WaterFactor: 25
   SandFactor: 5
@@ -329,11 +329,19 @@ MonoBehaviour:
   MoutainFactor: 45
   StonePercent: 0.4
   MountainPercent: 1
+  RockPercent: 0.05
+  BushPercent: 0.1
+  TreePercent: 0.3
   tile:
   - {fileID: 11400000, guid: 470ffa967decd8e47b2723b59131a7c7, type: 2}
   - {fileID: 11400000, guid: 9636d00714a6609418f299437cabe0ff, type: 2}
   - {fileID: 11400000, guid: a93cf5d220e37e34185bee5fdfefa889, type: 2}
   - {fileID: 11400000, guid: 8cbb1ad3715a4644db62baa6b296b156, type: 2}
+  ElementSpecs:
+  - Element: {fileID: 4558052112371092915, guid: f07b501bf6e7ac24582a2657b75680bc, type: 3}
+    SpawnConditions:
+    - terrainName: Montain_Tile_Rule
+      percent: 1
   mapElements:
   - {fileID: 4558052112371092915, guid: f07b501bf6e7ac24582a2657b75680bc, type: 3}
   - {fileID: 2438594621955752494, guid: f4c926b77e35900499d3ca9de4a8b6fe, type: 3}
