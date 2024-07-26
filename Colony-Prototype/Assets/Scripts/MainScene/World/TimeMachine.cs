@@ -40,6 +40,10 @@ public class TimeMachine : MonoBehaviour {
         printTime();
     }
 
+    public void OnPause() {
+        Time.timeScale = 0.0f;
+    }
+
     private int UpdateTime(ref int time, int delta, int module) {
         time+= delta;
         if (time >= module) {
@@ -72,7 +76,7 @@ public class TimeMachine : MonoBehaviour {
 
     private void printTime() {
         CalculateNewTime();
-        string formattedTime = $"{CurrentHour:D2}:{CurrentMinute:D2} Day {(CurrentDay + 1)}, {FormatMonth(CurrentMonth)} Year {(CurrentYear + 1)}";
+        string formattedTime = $"{CurrentHour:D2}:{CurrentMinute:D2}:{CurrentSecond:D2} Day {(CurrentDay + 1)}, {FormatMonth(CurrentMonth)} Year {(CurrentYear + 1)}";
         labelText.text = formattedTime;     
     }
 
