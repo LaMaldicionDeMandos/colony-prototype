@@ -13,10 +13,10 @@ public class TimeMachine : MonoBehaviour {
     private static int YEAR_IN_MONTHS = 4;
 
     private static float PAUSE_SPEED = 0.0f;
-    private static float X1_SPEED = 1.0f;
-    private static float X2_SPEED = 20.0f;
-    private static float X3_SPEED = 1200.0f;
-    private static float X4_SPEED = 7200.0f;
+    private static float X1_SPEED = 0.01f;
+    private static float X2_SPEED = 0.2f;
+    private static float X3_SPEED = 12.0f;
+    private static float X4_SPEED = 72.0f;
 
     private static string[] FORMATTED_MONTH = new string[] { "Spring", "Summer", "Fall", "Winter"};
 
@@ -39,7 +39,7 @@ public class TimeMachine : MonoBehaviour {
 
     void Start() {        
         labelText = Label.GetComponent<TMP_Text>();
-        labelText.text = "TIME!!";
+        OnPause();
     }
 
     void Update() {
@@ -54,6 +54,17 @@ public class TimeMachine : MonoBehaviour {
         Time.timeScale = X1_SPEED;
     }
 
+    public void OnForward() {
+        Time.timeScale = X2_SPEED;
+    }
+
+    public void OnForwardX2() {
+        Time.timeScale = X3_SPEED;
+    }
+
+    public void OnForwardX3() {
+        Time.timeScale = X4_SPEED;
+    }
     private int UpdateTime(ref int time, int delta, int module) {
         time+= delta;
         if (time >= module) {
