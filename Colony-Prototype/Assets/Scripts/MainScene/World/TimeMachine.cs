@@ -13,10 +13,10 @@ public class TimeMachine : MonoBehaviour {
     private static int YEAR_IN_MONTHS = 4;
 
     private static float PAUSE_SPEED = 0.0f;
-    private static float X1_SPEED = 0.01f;
-    private static float X2_SPEED = 0.2f;
-    private static float X3_SPEED = 12.0f;
-    private static float X4_SPEED = 72.0f;
+    private static float X1_SPEED = 0.2f;
+    private static float X2_SPEED = 2.0f;
+    private static float X3_SPEED = 20.0f;
+    private static float X4_SPEED = 100.0f;
 
     private static string[] FORMATTED_MONTH = new string[] { "Spring", "Summer", "Fall", "Winter"};
 
@@ -86,7 +86,7 @@ public class TimeMachine : MonoBehaviour {
     }
 
     private void CalculateNewTime() {
-        int ds = UpdateSecondsFranction(Time.deltaTime);
+        int ds = UpdateSecondsFranction(Time.deltaTime*10);
         int dm = UpdateTime(ref CurrentSecond, ds, MINUTE_IN_SECONDS);
         int dh = UpdateTime(ref CurrentMinute, dm, HOUR_IN_MINUTES);
         int dd = UpdateTime(ref CurrentHour, dh, DAY_IN_HOURS);
