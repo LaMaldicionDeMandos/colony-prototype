@@ -12,6 +12,12 @@ public class TimeMachine : MonoBehaviour {
     private static int MONTH_IN_DAYS = 20;
     private static int YEAR_IN_MONTHS = 4;
 
+    private static float PAUSE_SPEED = 0.0f;
+    private static float X1_SPEED = 1.0f;
+    private static float X2_SPEED = 20.0f;
+    private static float X3_SPEED = 1200.0f;
+    private static float X4_SPEED = 7200.0f;
+
     private static string[] FORMATTED_MONTH = new string[] { "Spring", "Summer", "Fall", "Winter"};
 
     private float currentSecondFraction;
@@ -41,7 +47,11 @@ public class TimeMachine : MonoBehaviour {
     }
 
     public void OnPause() {
-        Time.timeScale = 0.0f;
+        Time.timeScale = PAUSE_SPEED;
+    }
+
+    public void OnPlay() {
+        Time.timeScale = X1_SPEED;
     }
 
     private int UpdateTime(ref int time, int delta, int module) {
