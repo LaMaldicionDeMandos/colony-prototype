@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 
 public class ItemSpecManager {
-    public List<ItemSpec> Items;
+    public List<ItemSpec> items;
 
     public ItemSpecManager(List<ItemSpec> items) {
-        Items = items;
+        this.items = items;
     }
 
     public ItemSpecManager() {
-        Items = new List<ItemSpec> { new ItemSpec("Stone") };
+        items = new List<ItemSpec> { new ItemSpec("Stone"), new ItemSpec("Fiber") };
     }
 
 }

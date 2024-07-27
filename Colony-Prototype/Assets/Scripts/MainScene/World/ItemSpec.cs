@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemSpec {
-    public string Name;
+    public string name;
 
     public ItemSpec(string name) {
-        Name = name;
+        this.name = name;
     }
 }

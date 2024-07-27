@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ItemInventory {
-    public ItemSpec ItemSpec;
-    public int Amount;
+    public ItemSpec itemSpec;
+    public int amount;
 
     public ItemInventory(ItemSpec itemSpec, int amount) {
-        ItemSpec = itemSpec;
-        Amount = amount;
+        this.itemSpec = itemSpec;
+        this.amount = amount;
     }
+
+    public string name => itemSpec.name;
 }
