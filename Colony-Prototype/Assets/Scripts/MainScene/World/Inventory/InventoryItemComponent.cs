@@ -22,7 +22,7 @@ public class InventoryItemComponent : MonoBehaviour {
     }
 
     void Update() {
-        label.text = (itemInventory.name != null)? $"{itemInventory.amount}" : "";
+        label.text = (itemInventory.name != null)? $"{itemInventory.name} {itemInventory.amount}" : "";
         if (itemInventory.icon != null) {
             icon.SetActive(true);
         } else {
