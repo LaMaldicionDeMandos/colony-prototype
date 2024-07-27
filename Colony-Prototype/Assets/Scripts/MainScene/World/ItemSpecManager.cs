@@ -10,7 +10,7 @@ public class ItemSpecManager {
     }
 
     public ItemSpecManager() {
-        items = new List<ItemSpec> { new ItemSpec("Stone"), new ItemSpec("Fiber") };
+        items = new List<ItemSpec> { new ItemSpec("Stone"), new ItemSpec("Fiber"), new ItemSpec("Stick") };
     }
 
 }

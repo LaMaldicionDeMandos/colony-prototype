@@ -12,7 +12,11 @@ public class Inventory : MonoBehaviour {
     private List<ItemInventory> inventory;
     void Start() {
         itemSpecManager = new ItemSpecManager();
-        inventory = new List<ItemInventory> { new ItemInventory(itemSpecManager.items[0], 10), new ItemInventory(itemSpecManager.items[1], 5)};
+        inventory = new List<ItemInventory> { 
+            new ItemInventory(itemSpecManager.items[0], 10), 
+            new ItemInventory(itemSpecManager.items[1], 5),
+            new ItemInventory(itemSpecManager.items[2], 20)
+        };
         ExecuteEvents.Execute<IUpdateInventoryEvent>(Panel, null, (x, y) => x.StartInventory(inventory));        
     }
 
