@@ -11,4 +11,5 @@ public class ItemInventory {
     }
 
     public string name => itemSpec.name;
+    public string icon => itemSpec.icon;
 }
