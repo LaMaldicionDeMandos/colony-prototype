@@ -6,7 +6,7 @@ public class InventotyHUD : MonoBehaviour, IUpdateInventoryEvent {
     private static string INVENTORY_ITEM_NAME = "InventoryItemcomponent";
     private GameObject prefab;
     private static Vector2 DEFAULT_POSITION = new Vector2(96.0f, -8.0f);
-    private static Vector2 DEFAULT_SIZE = new Vector2(192.0f, 16.0f);
+    private static Vector2 DEFAULT_SIZE = new Vector2(192.0f, 20.0f);
     private static Vector2 DEFAULT_ANCHOR = new Vector2(0.0f, 1.0f);
     private static Vector3 DEFAULT_SCALE = new Vector3(1.0f, 1.0f, 1.0f);
     private List<ItemInventory> inventory;
