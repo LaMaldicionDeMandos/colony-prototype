@@ -97,7 +97,7 @@ public class TimeMachine : MonoBehaviour {
 
     private void printTime() {
         CalculateNewTime();
-        string formattedTime = $"{CurrentHour:D2}:{CurrentMinute:D2}:{CurrentSecond:D2} Day {(CurrentDay + 1)}, {FormatMonth(CurrentMonth)} Year {(CurrentYear + 1)}";
+        string formattedTime = $"{CurrentHour:D2}:{CurrentMinute:D2} Day {(CurrentDay + 1)}, {FormatMonth(CurrentMonth)} Year {(CurrentYear + 1)}";
         labelText.text = formattedTime;     
     }
 
