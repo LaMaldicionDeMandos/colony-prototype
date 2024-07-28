@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PersonState : MonoBehaviour, DieEventHandler, ILivingBeingState {
+public class PersonState : LivingBeingBase, ILivingBeingState {
     private Quaternion DIE_ROTATION = Quaternion.Euler(0, 0, 80);
     public bool died;
 
@@ -16,7 +16,7 @@ public class PersonState : MonoBehaviour, DieEventHandler, ILivingBeingState {
 
     void Update() {}
 
-    public void Die() {
+    public override void Die() {
         if (!died) {
             Debug.Log("I have died");
             died = true;

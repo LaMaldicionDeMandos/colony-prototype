@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class ThirstNeed : Mortal {
     private static float MIN = -100.0f;
-    private static float SWOON = -85.0f;
+    private static float FAINT = -85.0f;
     private static float DELIRIUM = -67.0f;
 
     private static float ZERO = 0.0f;
@@ -24,18 +24,18 @@ public class ThirstNeed : Mortal {
 
     private void CalculateLocalTaskByThirst() {
         if (thirst < MIN) ShuldDie();
-        else if (thirst < SWOON) Swoon();
+        else if (thirst < FAINT) ShouldFaint();
         else if (thirst < DELIRIUM) Delirium();
         else if (thirst < ZERO) HasVeryThrist();
         else if (thirst < THIRST) HasThrist();
     }
 
     private void ShuldDie() {
-        ExecuteEvents.Execute<DieEventHandler>(gameObject, null, (x, y) => x.Die());
+        ExecuteEvents.Execute<LivingBeingEventHandler>(gameObject, null, (x, y) => x.Die());
     }
 
-    private void Swoon() {
-        //Debug.Log("Swoon!");
+    private void ShouldFaint() {
+        ExecuteEvents.Execute<LivingBeingEventHandler>(gameObject, null, (x, y) => x.Faint());
     }
 
     private void Delirium() {
