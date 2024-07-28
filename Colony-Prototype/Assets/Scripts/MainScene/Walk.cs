@@ -2,16 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Walk : MonoBehaviour, DieEventHandler {
+public class Walk : Mortal {
 
     private Animator animator;
     // Start is called before the first frame update
-    void Start() {
+    protected override void Start() {
         animator = GetComponent<Animator>();
-        ILivingBeingState state = GetComponent<ILivingBeingState>();
-        if (state.IsDied()) {
-            this.enabled = false;
-        }
+        base.Start();
     }
 
     void Update() {
@@ -31,9 +28,5 @@ public class Walk : MonoBehaviour, DieEventHandler {
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
             animator.SetBool("right_walk", true);
         }
-    }
-
-    public void Die() {
-        this.enabled = false;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ThirstNeed : MonoBehaviour, DieEventHandler {
+public class ThirstNeed : Mortal {
     private static float MIN = -100.0f;
     private static float SWOON = -85.0f;
     private static float DELIRIUM = -67.0f;
@@ -17,15 +17,9 @@ public class ThirstNeed : MonoBehaviour, DieEventHandler {
 
     public float thirst;
 
-    void Start() {}
-
     void Update() {
         CalculateThirst(Time.deltaTime);
         CalculateLocalTaskByThirst();
-    }
-
-    public void Die() {
-        this.enabled = false;
     }
 
     private void CalculateLocalTaskByThirst() {

@@ -9,6 +9,9 @@ public class PersonState : MonoBehaviour, DieEventHandler, ILivingBeingState {
     private Animator animator;
     void Start() {
         animator = GetComponent<Animator>();
+        if (died) {
+            SetStatusDied();
+        }
     }
 
     void Update() {}
@@ -17,12 +20,16 @@ public class PersonState : MonoBehaviour, DieEventHandler, ILivingBeingState {
         if (!died) {
             Debug.Log("I have died");
             died = true;
-            animator.SetBool("die", true);
-            transform.rotation = DIE_ROTATION;
+            SetStatusDied();
         }
     }
 
     public bool IsDied() {
         return died;
+    }
+
+    private void SetStatusDied() {
+        animator.SetBool("die", true);
+        transform.rotation = DIE_ROTATION;
     }
 }
