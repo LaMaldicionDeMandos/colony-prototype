@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Walk : MonoBehaviour {
+public class Walk : MonoBehaviour, DieEventHandler {
 
     private Animator animator;
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         animator = GetComponent<Animator>();
+        ILivingBeingState state = GetComponent<ILivingBeingState>();
+        if (state.IsDied()) {
+            this.enabled = false;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         animator.SetBool("left_walk", false);
         animator.SetBool("up_walk", false);
         animator.SetBool("right_walk", false);
@@ -30,5 +31,9 @@ public class Walk : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
             animator.SetBool("right_walk", true);
         }
+    }
+
+    public void Die() {
+        this.enabled = false;
     }
 }

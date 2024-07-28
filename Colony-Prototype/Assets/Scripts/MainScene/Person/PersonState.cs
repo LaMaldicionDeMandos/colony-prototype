@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PersonState : MonoBehaviour, DieEvent {
+public class PersonState : MonoBehaviour, DieEventHandler, ILivingBeingState {
     private Quaternion DIE_ROTATION = Quaternion.Euler(0, 0, 80);
     public bool died;
 
@@ -20,5 +20,9 @@ public class PersonState : MonoBehaviour, DieEvent {
             animator.SetBool("die", true);
             transform.rotation = DIE_ROTATION;
         }
+    }
+
+    public bool IsDied() {
+        return died;
     }
 }

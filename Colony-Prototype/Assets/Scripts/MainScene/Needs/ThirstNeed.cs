@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ThirstNeed : MonoBehaviour {
+public class ThirstNeed : MonoBehaviour, DieEventHandler {
     private static float MIN = -100.0f;
     private static float SWOON = -85.0f;
     private static float DELIRIUM = -67.0f;
@@ -24,16 +24,20 @@ public class ThirstNeed : MonoBehaviour {
         CalculateLocalTaskByThirst();
     }
 
+    public void Die() {
+        this.enabled = false;
+    }
+
     private void CalculateLocalTaskByThirst() {
-        if (thirst < MIN) Die();
+        if (thirst < MIN) ShuldDie();
         else if (thirst < SWOON) Swoon();
         else if (thirst < DELIRIUM) Delirium();
         else if (thirst < ZERO) HasVeryThrist();
         else if (thirst < THIRST) HasThrist();
     }
 
-    private void Die() {
-        ExecuteEvents.Execute<DieEvent>(gameObject, null, (x, y) => x.Die());
+    private void ShuldDie() {
+        ExecuteEvents.Execute<DieEventHandler>(gameObject, null, (x, y) => x.Die());
     }
 
     private void Swoon() {

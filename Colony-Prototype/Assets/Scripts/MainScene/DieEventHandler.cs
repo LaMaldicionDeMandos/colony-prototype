@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public interface DieEvent : IEventSystemHandler {
+public interface DieEventHandler : IEventSystemHandler {
     void Die();
 }
