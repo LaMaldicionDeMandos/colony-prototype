@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ThirstNeed : MonoBehaviour {
     private static float MIN = -100.0f;
@@ -32,23 +33,23 @@ public class ThirstNeed : MonoBehaviour {
     }
 
     private void Die() {
-        Debug.Log("Die!!!");
+        ExecuteEvents.Execute<DieEvent>(gameObject, null, (x, y) => x.Die());
     }
 
     private void Swoon() {
-        Debug.Log("Swoon!");
+        //Debug.Log("Swoon!");
     }
 
     private void Delirium() {
-        Debug.Log("Delirium!");
+        //Debug.Log("Delirium!");
     }
 
     private void HasVeryThrist() {
-        Debug.Log("Very Thrist!");
+        //Debug.Log("Very Thrist!");
     }
 
     private void HasThrist() {
-        Debug.Log("Thrist");
+        //Debug.Log("Thrist");
     }
 
     private void CalculateThirst(float dt) {
