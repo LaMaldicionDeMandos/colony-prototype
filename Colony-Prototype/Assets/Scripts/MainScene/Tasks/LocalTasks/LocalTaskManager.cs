@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class LocalTaskManager : MonoBehaviour, LocalTaskEventHandler {
+public class LocalTaskManager : Mortal, LocalTaskEventHandler {
     private List<Task> tasks = new List<Task>();
-    void Start() {}
 
     void Update() {}
 
