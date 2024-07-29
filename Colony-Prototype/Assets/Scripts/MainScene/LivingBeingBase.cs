@@ -5,4 +5,5 @@ using UnityEngine;
 public abstract class LivingBeingBase : MonoBehaviour, LivingBeingEventHandler {
     public virtual void Die() {}
     public virtual void Faint() {}
+    public virtual void Delirium() {}
 }

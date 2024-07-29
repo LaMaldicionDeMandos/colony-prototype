@@ -6,4 +6,6 @@ using UnityEngine.EventSystems;
 public interface LivingBeingEventHandler : IEventSystemHandler {
     void Die();
     void Faint();
+
+    void Delirium(); 
 }

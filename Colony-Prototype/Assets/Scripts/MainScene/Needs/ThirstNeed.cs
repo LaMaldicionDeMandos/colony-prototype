@@ -25,7 +25,7 @@ public class ThirstNeed : Mortal {
     private void CalculateLocalTaskByThirst() {
         if (thirst < MIN) ShuldDie();
         else if (thirst < FAINT) ShouldFaint();
-        else if (thirst < DELIRIUM) Delirium();
+        else if (thirst < DELIRIUM) ShouldDelirium();
         else if (thirst < ZERO) HasVeryThrist();
         else if (thirst < THIRST) HasThrist();
     }
@@ -38,16 +38,20 @@ public class ThirstNeed : Mortal {
         ExecuteEvents.Execute<LivingBeingEventHandler>(gameObject, null, (x, y) => x.Faint());
     }
 
-    private void Delirium() {
-        //Debug.Log("Delirium!");
+    private void ShouldDelirium() {
+        ExecuteEvents.Execute<LivingBeingEventHandler>(gameObject, null, (x, y) => x.Delirium());
     }
 
     private void HasVeryThrist() {
-        //Debug.Log("Very Thrist!");
+        SendTask(new HidratateTask(TaskPriority.HIGH));
     }
 
     private void HasThrist() {
-        //Debug.Log("Thrist");
+        SendTask(new HidratateTask(TaskPriority.IMPORTANT));
+    }
+
+    private void SendTask(Task task) {
+        ExecuteEvents.Execute<LocalTaskEventHandler>(gameObject, null, (x, y) => x.OnTask(task));
     }
 
     private void CalculateThirst(float dt) {
