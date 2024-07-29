@@ -17,3 +17,10 @@ Es un valor entre [-100, 100] y se divide en dos fases
 * **LLega a -67:** Delirio, entra en modo delirio, solo tomara agua si le dan o si entra en el agua.
 * **LLega a -85:** Desmayo, se desmaya, solo toma agua si le dan.
 * **Llega a -100:** Muerte, la persona se muere.
+
+## Sueño
+Es valor entre [0, 100], se consume en 2 días por lo tanto el valor baja a razon de 30m.
+* **Llega a 88:** Solo va a dormir si es hora de dormir
+* **Llega a 68:** Si puede se va a dormir
+* **Llega a 0: ** Se queda dormido 
+
