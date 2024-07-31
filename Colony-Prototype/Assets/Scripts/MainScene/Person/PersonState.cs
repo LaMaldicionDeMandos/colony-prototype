@@ -6,6 +6,10 @@ public class PersonState : MonoBehaviour, LivingBeingEventHandler, ILivingBeingS
     private Quaternion DIE_ROTATION = Quaternion.Euler(0, 0, 80);
     public bool died;
 
+    public bool sleeping;
+    public bool imSleepy;
+    public bool imVerySleepy;
+
     private Animator animator;
     void Start() {
         animator = GetComponent<Animator>();
@@ -26,6 +30,33 @@ public class PersonState : MonoBehaviour, LivingBeingEventHandler, ILivingBeingS
 
     public void Faint() {}
     public void Delirium() {}
+
+    public void Sleep() {
+        if (!sleeping) {
+            Debug.Log("ZZZZZ");
+            sleeping = true;
+        }
+    }
+
+    public void ImSleepy() {
+        if (!imSleepy) {
+            Debug.Log("I'm Sleepy");
+            imSleepy = true;
+        }
+    }
+
+    public void ImVerySleepy() {
+        if (!imVerySleepy) {
+            Debug.Log("I'm very Sleepy");
+            imVerySleepy = true;
+        }
+    }
+
+    public void WakeUp() {
+        sleeping = false;
+        imSleepy = false;
+        imVerySleepy = false;
+    }
 
     public bool IsDied() {
         return died;

@@ -8,4 +8,12 @@ public interface LivingBeingEventHandler : IEventSystemHandler {
     void Faint();
 
     void Delirium(); 
+
+    void Sleep();
+
+    void ImSleepy();
+
+    void ImVerySleepy();
+
+    void WakeUp();
 }
