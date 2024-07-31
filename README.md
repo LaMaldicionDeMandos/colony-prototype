@@ -22,5 +22,5 @@ Es un valor entre [-100, 100] y se divide en dos fases
 Es valor entre [0, 100], se consume en 2 días por lo tanto el valor baja a razon de 30m.
 * **Llega a 88:** Solo va a dormir si es hora de dormir
 * **Llega a 68:** Si puede se va a dormir
-* **Llega a 0: ** Se queda dormido 
+* **Llega a 0:** Se queda dormido 
 
