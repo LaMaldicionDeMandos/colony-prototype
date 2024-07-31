@@ -24,3 +24,8 @@ Es valor entre [0, 100], se consume en 2 días por lo tanto el valor baja a razo
 * **Llega a 68:** Si puede se va a dormir
 * **Llega a 0:** Se queda dormido 
 
+## Baño
+Es valor entre [0, 100], se consume en 12 horas por lo tanto el valor baja a razon de 8m.
+* **Llega a 33.33:** Si puede va al baño
+* **Llega a 8.33:** Deja lo que tiene que hacer (Si no es muy importante)
+* **Llega a 0:** Se mea
