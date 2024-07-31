@@ -9,7 +9,7 @@ public class SleepNeed : Mortal {
     private static float ZERO = 0.0f;
     private static float UNIT_TIME_IN_SECONDS = 30*60;
 
-    public float dream = 0.0f;
+    public float dream = 100.0f;
 
     void Update() {
         CalculateSleep(Time.deltaTime);
