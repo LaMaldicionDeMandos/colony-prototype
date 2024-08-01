@@ -126,11 +126,11 @@ TextureImporter:
       name: Player_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 51
-        width: 12
+        width: 16
         height: 16
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -147,11 +147,11 @@ TextureImporter:
       name: Player_1
       rect:
         serializedVersion: 2
-        x: 19
+        x: 17
         y: 51
-        width: 12
+        width: 16
         height: 16
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -168,11 +168,11 @@ TextureImporter:
       name: Player_2
       rect:
         serializedVersion: 2
-        x: 36
+        x: 34
         y: 51
-        width: 12
+        width: 16
         height: 16
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -189,11 +189,11 @@ TextureImporter:
       name: Player_3
       rect:
         serializedVersion: 2
-        x: 53
+        x: 51
         y: 51
-        width: 12
+        width: 16
         height: 16
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -210,11 +210,11 @@ TextureImporter:
       name: Player_4
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 34
-        width: 12
+        width: 16
         height: 16
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -231,11 +231,11 @@ TextureImporter:
       name: Player_5
       rect:
         serializedVersion: 2
-        x: 19
+        x: 17
         y: 34
-        width: 12
+        width: 16
         height: 16
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -252,11 +252,11 @@ TextureImporter:
       name: Player_6
       rect:
         serializedVersion: 2
-        x: 36
+        x: 34
         y: 34
-        width: 12
+        width: 16
         height: 16
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -273,11 +273,11 @@ TextureImporter:
       name: Player_7
       rect:
         serializedVersion: 2
-        x: 53
+        x: 51
         y: 34
-        width: 12
+        width: 16
         height: 16
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -294,11 +294,11 @@ TextureImporter:
       name: Player_8
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 17
-        width: 12
+        width: 16
         height: 16
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -315,11 +315,11 @@ TextureImporter:
       name: Player_9
       rect:
         serializedVersion: 2
-        x: 19
+        x: 17
         y: 17
-        width: 12
+        width: 16
         height: 16
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -336,11 +336,11 @@ TextureImporter:
       name: Player_10
       rect:
         serializedVersion: 2
-        x: 36
+        x: 34
         y: 17
-        width: 12
+        width: 16
         height: 16
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -357,11 +357,11 @@ TextureImporter:
       name: Player_11
       rect:
         serializedVersion: 2
-        x: 53
+        x: 51
         y: 17
-        width: 12
+        width: 16
         height: 16
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -378,11 +378,11 @@ TextureImporter:
       name: Player_12
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 0
-        width: 12
+        width: 16
         height: 16
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -399,11 +399,11 @@ TextureImporter:
       name: Player_13
       rect:
         serializedVersion: 2
-        x: 19
+        x: 17
         y: 0
-        width: 12
+        width: 16
         height: 16
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -420,11 +420,11 @@ TextureImporter:
       name: Player_14
       rect:
         serializedVersion: 2
-        x: 36
+        x: 34
         y: 0
-        width: 12
+        width: 16
         height: 16
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -441,11 +441,11 @@ TextureImporter:
       name: Player_15
       rect:
         serializedVersion: 2
-        x: 53
+        x: 51
         y: 0
-        width: 12
+        width: 16
         height: 16
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
