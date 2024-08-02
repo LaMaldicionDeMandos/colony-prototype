@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Move : MonoBehaviour, Movement {
-    public float Speed = 1.0f;
+    public float Speed = 2.0f;
     private Vector3 currentDirection = Vector3.zero;
 
     void Start() {}
