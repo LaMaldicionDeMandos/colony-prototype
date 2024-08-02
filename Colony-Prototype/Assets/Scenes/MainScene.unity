@@ -380,6 +380,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Person
       objectReference: {fileID: 0}
+    - target: {fileID: 8016478589375459872, guid: c5478a3434fc03644872131d30183397, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8946266058424988210, guid: c5478a3434fc03644872131d30183397, type: 3}
       propertyPath: m_RootOrder
       value: 4
