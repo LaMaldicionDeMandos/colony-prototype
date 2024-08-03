@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-public class CameraZoom : MonoBehaviour {
+public class CameraManager : MonoBehaviour {
 
     private static int ZOOM_X_DELTA = 16;
     private int ZOOM_Y_DELTA = 9;
@@ -16,8 +16,11 @@ public class CameraZoom : MonoBehaviour {
     private static int MIN_LEVEL = 0;
     private static int MAX_LEVEL = 6;
 
+    private static float VELOCITY_FACTOR = 0.012f;
+
     private PixelPerfectCamera pixelPerfectCamera;
     public int zoomLevel = 1;
+
     void Start() {
         pixelPerfectCamera = GetComponent<PixelPerfectCamera>();
         Zoom();
@@ -30,6 +33,7 @@ public class CameraZoom : MonoBehaviour {
             zoomLevel = Mathf.Clamp(zoomLevel, MIN_LEVEL, MAX_LEVEL);
             Zoom();
         }
+        UpdateMove();
     }
 
     void Zoom() {
@@ -37,5 +41,21 @@ public class CameraZoom : MonoBehaviour {
         int zoomY = Mathf.FloorToInt(MIN_ZOOM_Y + zoomLevel*ZOOM_FACTOR*ZOOM_Y_DELTA);
         pixelPerfectCamera.refResolutionX = zoomX;
 		pixelPerfectCamera.refResolutionY = zoomY;
+    }
+
+    void UpdateMove() {
+        float velocity = zoomLevel + 1;
+        if (Input.GetKey(KeyCode.LeftArrow)) {
+            transform.position+= new Vector3(-velocity*VELOCITY_FACTOR, 0, 0); 
+        }
+        if (Input.GetKey(KeyCode.RightArrow)) {
+            transform.position+= new Vector3(velocity*VELOCITY_FACTOR, 0, 0); 
+        }
+        if (Input.GetKey(KeyCode.UpArrow)) {
+            transform.position+= new Vector3(0, velocity*VELOCITY_FACTOR, 0); 
+        }
+        if (Input.GetKey(KeyCode.DownArrow)) {
+            transform.position+= new Vector3(0, -velocity*VELOCITY_FACTOR, 0); 
+        }
     }
 }
