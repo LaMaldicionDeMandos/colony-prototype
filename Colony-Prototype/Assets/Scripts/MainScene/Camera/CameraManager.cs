@@ -16,10 +16,11 @@ public class CameraManager : MonoBehaviour {
     private static int MIN_LEVEL = 0;
     private static int MAX_LEVEL = 6;
 
-    private static float VELOCITY_FACTOR = 0.012f;
+    private static float VELOCITY_FACTOR = 0.025f;
 
     private PixelPerfectCamera pixelPerfectCamera;
     public int zoomLevel = 1;
+    public float edgeSize = 10.0f;
 
     void Start() {
         pixelPerfectCamera = GetComponent<PixelPerfectCamera>();
@@ -43,8 +44,13 @@ public class CameraManager : MonoBehaviour {
 		pixelPerfectCamera.refResolutionY = zoomY;
     }
 
-    void UpdateMove() {
+    private void UpdateMove() {
         float velocity = zoomLevel + 1;
+        UpdateMoveByKeys(velocity);
+        UpdateMoveByBorder(velocity);
+    }
+
+    private void UpdateMoveByKeys(float velocity) {
         if (Input.GetKey(KeyCode.LeftArrow)) {
             transform.position+= new Vector3(-velocity*VELOCITY_FACTOR, 0, 0); 
         }
@@ -56,6 +62,21 @@ public class CameraManager : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.DownArrow)) {
             transform.position+= new Vector3(0, -velocity*VELOCITY_FACTOR, 0); 
+        }
+    }
+
+    private void UpdateMoveByBorder(float velocity) {
+        if (Input.mousePosition.x >= Screen.width - edgeSize) {
+            transform.position+= new Vector3(velocity*VELOCITY_FACTOR, 0, 0);
+        }
+        if (Input.mousePosition.x < edgeSize) {
+            transform.position+= new Vector3(-velocity*VELOCITY_FACTOR, 0, 0);
+        }
+        if (Input.mousePosition.y < edgeSize) {
+            transform.position+= new Vector3(0, -velocity*VELOCITY_FACTOR, 0);
+        }
+        if (Input.mousePosition.y >= Screen.height - edgeSize) {
+            transform.position+= new Vector3(0, velocity*VELOCITY_FACTOR, 0);
         }
     }
 }
