@@ -29,7 +29,7 @@ public class CameraManager : MonoBehaviour {
     void Update() {
         var scrollWheelInput = Input.GetAxis("Mouse ScrollWheel");
 	    if (scrollWheelInput != 0) {
-		    zoomLevel += Mathf.RoundToInt(scrollWheelInput * 10);
+		    zoomLevel += Mathf.RoundToInt(-scrollWheelInput * 10);
             zoomLevel = Mathf.Clamp(zoomLevel, MIN_LEVEL, MAX_LEVEL);
             Zoom();
         }
