@@ -50,33 +50,49 @@ public class CameraManager : MonoBehaviour {
         UpdateMoveByBorder(velocity);
     }
 
+    private void MoveToLeft(float velocity) {
+        transform.position+= new Vector3(-velocity*VELOCITY_FACTOR, 0, 0);
+    }
+
+    private void MoveToRight(float velocity) {
+        transform.position+= new Vector3(velocity*VELOCITY_FACTOR, 0, 0);        
+    }
+
+    private void MoveToUp(float velocity) {
+        transform.position+= new Vector3(0, velocity*VELOCITY_FACTOR, 0);
+    }
+
+    private void MoveToDown(float velocity) {
+        transform.position+= new Vector3(0, -velocity*VELOCITY_FACTOR, 0);         
+    }
+
     private void UpdateMoveByKeys(float velocity) {
         if (Input.GetKey(KeyCode.LeftArrow)) {
-            transform.position+= new Vector3(-velocity*VELOCITY_FACTOR, 0, 0); 
+            MoveToLeft(velocity);
         }
         if (Input.GetKey(KeyCode.RightArrow)) {
-            transform.position+= new Vector3(velocity*VELOCITY_FACTOR, 0, 0); 
+            MoveToRight(velocity);
         }
         if (Input.GetKey(KeyCode.UpArrow)) {
-            transform.position+= new Vector3(0, velocity*VELOCITY_FACTOR, 0); 
+            MoveToUp(velocity);
         }
         if (Input.GetKey(KeyCode.DownArrow)) {
-            transform.position+= new Vector3(0, -velocity*VELOCITY_FACTOR, 0); 
+            MoveToDown(velocity);
         }
     }
 
     private void UpdateMoveByBorder(float velocity) {
         if (Input.mousePosition.x >= Screen.width - edgeSize) {
-            transform.position+= new Vector3(velocity*VELOCITY_FACTOR, 0, 0);
+            MoveToRight(velocity);
         }
         if (Input.mousePosition.x < edgeSize) {
-            transform.position+= new Vector3(-velocity*VELOCITY_FACTOR, 0, 0);
+            MoveToLeft(velocity);
         }
         if (Input.mousePosition.y < edgeSize) {
-            transform.position+= new Vector3(0, -velocity*VELOCITY_FACTOR, 0);
+            MoveToDown(velocity);
         }
         if (Input.mousePosition.y >= Screen.height - edgeSize) {
-            transform.position+= new Vector3(0, velocity*VELOCITY_FACTOR, 0);
+            MoveToUp(velocity);
         }
     }
 }
