@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class ElementSpawnCondition {
+public class ItemSpawnCondition {
     public string terrainName;
     public double percent;
 }
