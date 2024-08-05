@@ -34,8 +34,6 @@ public class MapGenerator : MonoBehaviour {
 
     private List<GameObject> gameObjects;
 
-    public Color highlightColor = Color.red;
-
     void Start() {
         int seed = UnityEngine.Random.Range(0, 10000);
         rng = new System.Random(seed);
@@ -91,8 +89,6 @@ public class MapGenerator : MonoBehaviour {
                 tilemap.SetTile(new Vector3Int(x, y, 0), tiles[x + MapWidth/2, y + MapHeigth/2]);   
             }
         }
-        tilemap.SetColor(Vector3Int.zero, highlightColor);
-        tilemap.SetColor(Vector3Int.up, highlightColor);
     }
 
     private int GetTerrainIndex(float noise, Tuple<float, float>[] ranges) {

@@ -348,7 +348,6 @@ MonoBehaviour:
   - {fileID: 1321831160621260746, guid: c253c30efcf638a4c8673b7d4ad28460, type: 3}
   - {fileID: 5301152349736130370, guid: 77c5fce6245f2b344b1d4ff9286bdbee, type: 3}
   - {fileID: 5026860720694076366, guid: e96a69854ddd0954b879a5a0e938b51b, type: 3}
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &166248292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1622,6 +1621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1589095027}
+  - component: {fileID: 1589095028}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -1644,6 +1644,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1589095028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589095026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0ba01c35571cb344918448f267924bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 100989633}
+  areas:
+  - name: trash
+    lt: {x: -1, y: -1, z: 0}
+    rd: {x: 1, y: 1, z: 0}
+    color: {r: 1, g: 0.8, b: 0.7, a: 1}
 --- !u!1001 &1785026825
 PrefabInstance:
   m_ObjectHideFlags: 0
