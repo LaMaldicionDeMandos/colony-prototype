@@ -10,21 +10,28 @@ public class AreaRenderer : MonoBehaviour {
     [SerializeField]
     public Area[] areas;
 
-    private bool setted = false;
+    private bool active = true;
+    private bool shouldChange = true;
 
     void Start() {}
 
     // Update is called once per frame
     void Update() {
-        if (!setted) {
+        if (shouldChange) {
             foreach(Area area in areas) {
                 for (int i = area.bl.x; i <= area.tr.x; i++) {
                     for (int j = area.bl.y; j <= area.tr.y; j++) {
-                        tilemap.SetColor(new Vector3Int(i, j, 0), area.color);
+                        if (active) tilemap.SetColor(new Vector3Int(i, j, 0), area.color);
+                        else tilemap.SetColor(new Vector3Int(i, j, 0), Color.white);
                     }
                 }
             }
-            //setted = true;
+            shouldChange = false;
         }
+    }
+
+    public void OnActiveAreas() {
+        this.active = !active;
+        this.shouldChange = true;
     }
 }
