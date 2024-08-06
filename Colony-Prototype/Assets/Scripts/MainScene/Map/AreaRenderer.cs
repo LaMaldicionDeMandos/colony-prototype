@@ -18,8 +18,8 @@ public class AreaRenderer : MonoBehaviour {
     void Update() {
         if (!setted) {
             foreach(Area area in areas) {
-                for (int i = area.lt.x; i <= area.rd.x; i++) {
-                    for (int j = area.lt.y; j <= area.rd.y; j++) {
+                for (int i = area.bl.x; i <= area.tr.x; i++) {
+                    for (int j = area.bl.y; j <= area.tr.y; j++) {
                         tilemap.SetColor(new Vector3Int(i, j, 0), area.color);
                     }
                 }
