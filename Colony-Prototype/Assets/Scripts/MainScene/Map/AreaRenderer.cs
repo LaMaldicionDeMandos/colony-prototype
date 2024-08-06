@@ -15,7 +15,6 @@ public class AreaRenderer : MonoBehaviour {
 
     void Start() {}
 
-    // Update is called once per frame
     void Update() {
         if (shouldChange) {
             foreach(Area area in areas) {
