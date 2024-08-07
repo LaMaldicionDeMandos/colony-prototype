@@ -48,3 +48,85 @@ El tamaño del Tile puede representar 1 o 2 metros, pero con respecto a distanci
 ### Calculo de velovidades 
 Velocidad de humano: ```1m/s```
 Por lo tanto en el juego debe moverse a ```2 Tiles/s``` a la velocidad de Play
+
+# Terrenos
+**Nota:** El agua subterranea tiene una probabilidad de existir en un tile, pero se extiende a lo largo de varios tiles, dependiendo de un porcentaje de cantidad
+## Ordenados por profundidad
+* **Aguas profundas:** No es accesible (solo con bote), se puede pescar, peses grandes
+* **Aguas bajas:** Se puede pasar y ademas construir puentes, no se puede pescar
+* **Playa:** Se pueden conseguir rocas y piedras
+* **Zona fertil:** La fertilidad deberia variar segun los vecinos y bioma
+* **Zona poco fertil:** alejada de aguas
+* **Zona no fertil:** Cerca de zonas montañosas
+* **Zona Montañosa:**
+
+### Aguas Profundas
+* **Desplazamiento:** No se puede transitar, Accesible solo con bote
+* **Recursos:** Peses, Agua
+* **Peso:** __(si refinar)__ 25 __(compartido con aguas bajas)__
+* **Especial:** Si es mar, no se puede tomar (tendria que ver cuando viene de mar)
+
+### Aguas Bajas
+* **Desplazamiento:** 30%
+* **Recursos:** Peses, Agua
+* **Peso:** __(si refinar)__ 25 __(compartido con aguas profundas)__
+* **Especial:** Si es mar, no se puede tomar (tendria que ver cuando viene de mar)
+
+### Playa
+* **Desplazamiento:** 70%
+* **Recursos:** Roca, Piedras
+* **Fertilidad:** 10%
+* **Peso:** __(si refinar)__ 5
+* **Especial:** Solo cuando viene de mar (tendria que ver cuando viene de mar)
+
+### Lago
+* **Desplazamiento:** 30%
+* **Recursos:** Peces (Menos que en el mar), Agua
+* **Peso:** Todavia no se
+
+### Cienaga
+* **Desplazamiento:** 30%
+* **Recursos:** Probabilidad de agua subterranea muy alta __(Habria que calularlo)__
+* **Peso:** Todavia no se
+
+### Zona Humeda
+* **Donde**: Cerca de Cienaga
+* **Desplazamiento:** 80%
+* **Fertilidad:** 100%
+* **Recursos**: Arboles, Hiervas (para heno, fibras), Probabilidad de agua subterranea alta __(Habria que calularlo)__
+* **Peso**: Todavia no se
+
+### Zona Fertil
+* **Fertilidad:** 100%
+* **Desplazamiento:** 87%
+* **Recursos**: Arboles, Arbustos de todo tipo (para fibras, palos, frutos), Probabilidad de agua subterranea poca __(Habria que calularlo)__
+* **Peso**: 25, pero deberia ser al rededor del 50% del total
+
+### Zona Muy fertil
+* **Donde**: Si hay agua subterranea
+* **Fertilidad:** 140%
+* **Desplazamiento:** 87%
+* **Recursos**: Mas de todo, Arboles, Arbustos de todo tipo (para fibras, palos, frutos), Probabilidad de agua subterranea poca __(Habria que calularlo)__
+* **Peso**: Deberia ser muy poco
+
+### Suelo pedregoso
+* **Donde**: Cerca de zonas infertiles, al pie de la montaña
+* **Fertilidad:** 70%
+* **Desplazamiento:** 87%
+* **Recursos**: Arboles, Arbustos (para fibras, palos)
+* **Peso**: Deberia ser muy poco
+
+### Ladera
+* **Donde**: Al pie de la montaña (como playa para el agua),
+* **Fertilidad:** 0%
+* **Desplazamiento:** 87%
+* **Recursos**: Rocas, piedras
+* **Peso**: Como playa
+* **Especial**: Con el tiempo y muchas lluvias puede transformarse en Suelo pedregoso
+
+### Montaña
+* **Fertilidad:** 0%
+* **Desplazamiento:** No se puede transitar
+* **Recursos**: Rocas, piedras, Otros metales
+* **Peso**: 45 pero deberia ser poco (quizas menos)
+* **Especial**: Al excavar se transforma en Ladera
