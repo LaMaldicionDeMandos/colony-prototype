@@ -78,8 +78,9 @@ public class TimeMachine : MonoBehaviour {
     private int UpdateSecondsFranction(float dt) {
         currentSecondFraction+= dt;
         if (currentSecondFraction > UNIT) {
-            currentSecondFraction-= UNIT;
-            return 1;
+            int extra = Mathf.CeilToInt(currentSecondFraction - UNIT);
+            currentSecondFraction-= extra;
+            return extra;
         } else {
             return 0;
         }
