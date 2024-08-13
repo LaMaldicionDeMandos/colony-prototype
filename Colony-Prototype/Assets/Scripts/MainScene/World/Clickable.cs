@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Clickeable : MonoBehaviour, ClickableHandler {
+public class Clickable : MonoBehaviour, ClickableHandler {
     public string type;    
 
     private SpriteRenderer selectedItem;
@@ -14,8 +14,11 @@ public class Clickeable : MonoBehaviour, ClickableHandler {
 
     void Update() {}
 
-    public void OnClick(GameObject gameObject) {
-        Debug.Log("Me hicieron click?");
-        selectedItem.enabled = gameObject == transform.gameObject;
+    public void OnSelect(GameObject gameObject) {
+        if (gameObject == transform.gameObject) selectedItem.enabled = true;
+    }
+
+    public void OnUnselect(GameObject gameObject) {
+        if (gameObject == transform.gameObject) selectedItem.enabled = false;
     }
 }
