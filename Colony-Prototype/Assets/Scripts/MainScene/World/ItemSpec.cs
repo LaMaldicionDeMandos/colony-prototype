@@ -2,15 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ItemSpec {
     public string name;
-    public string icon;
+    public ElementSpawnSpec spawnSpec;
 
-    public ItemSpec(string name) {
-        this.name = name;
-    }
-    public ItemSpec(string name, string icon) {
-        this.name = name;
-        this.icon = icon;
-    }
+    public HarvestSpec harvest;
 }

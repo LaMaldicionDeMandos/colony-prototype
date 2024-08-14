@@ -642,6 +642,23 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5478a3434fc03644872131d30183397, type: 3}
+  itemsSpecs:
+  - name: Stone
+    spawnSpec:
+      Element: {fileID: 5301152349736130370, guid: 77c5fce6245f2b344b1d4ff9286bdbee, type: 3}
+      SpawnConditions:
+      - terrainName: Sand_Tile_Rule
+        percent: 0.4
+    harvest:
+      dificulty: 2m
+      collect:
+      - itemSpec:
+          name: Stone
+          icon: Stones_icon
+          onDropItemName: Stone
+          onDropInventoryAmount: 5
+        amount: 5
+      onHarvest: destroy
 --- !u!224 &170240422 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5716465713065431417, guid: ce875ceeaf5474c83a7ae0fce3b869b4, type: 3}
