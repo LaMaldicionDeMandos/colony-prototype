@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrincipalActionHandler : MonoBehaviour, ClickableHandler {
+public class HarvestActionHandler : MonoBehaviour, ClickableHandler {
 
-    private GameObject gameObject;
+    private GameObject harvesteable;
     void Start() {
         ItemSelectionManager.instance.Subscribe(this);
         Enable(false);
@@ -14,13 +14,18 @@ public class PrincipalActionHandler : MonoBehaviour, ClickableHandler {
 
     public void OnSelect(GameObject gameObject) {
         Debug.Log("Item " + gameObject.name + " Selected");
-        this.gameObject = gameObject;
-        Enable(true);
+        HarvesteableComponent harvesteableComponent = gameObject.GetComponent<HarvesteableComponent>();
+        if (harvesteableComponent != null) {
+            harvesteable = gameObject;
+            Enable(true);
+            Debug.Log("Sprite: " + harvesteableComponent.GetHarvestType());
+        }
+
     }
 
     public void OnUnselect(GameObject gameObject) {
         Debug.Log("Item " + gameObject.name + " Selected");
-        this.gameObject = null;
+        harvesteable = null;
         Enable(false);
     }
 

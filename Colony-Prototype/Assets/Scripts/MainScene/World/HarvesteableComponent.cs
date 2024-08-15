@@ -11,4 +11,11 @@ public class HarvesteableComponent : MonoBehaviour, Harvesteable {
     public void Harvest() {
         Debug.Log("Harvest " + itemSpec.name);
     }
+
+    public string GetHarvestType() {
+        if (itemSpec.IsHarvesteable()) {
+            return itemSpec.GetHarvestType();
+        }
+        return null;
+    }
 }

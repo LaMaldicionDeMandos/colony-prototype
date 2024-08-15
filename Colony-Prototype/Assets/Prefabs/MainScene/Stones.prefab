@@ -175,7 +175,7 @@ MonoBehaviour:
           onDropInventoryAmount: 5
         amount: 5
       onHarvest: destroy
-      harvestType: take
+      harvestType: grab
 --- !u!1001 &173519204719713492
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,4 +8,12 @@ public class ItemSpec {
     public ElementSpawnSpec spawnSpec;
 
     public HarvestSpec harvest;
+
+    public bool IsHarvesteable() {
+        return harvest != null;
+    }
+
+    public string GetHarvestType() {
+        return (harvest != null) ? harvest.harvestType : null;
+    }
 }
