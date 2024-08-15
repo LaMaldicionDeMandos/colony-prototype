@@ -11,4 +11,6 @@ public class HarvestSpec {
 
     public string onHarvest;
 
+    public string harvestType;
+
 }
