@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PrincipalActionHandler : MonoBehaviour, ClickableHandler {
+
+    private GameObject gameObject;
     void Start() {
         ItemSelectionManager.instance.Subscribe(this);
         Enable(false);
@@ -12,11 +14,13 @@ public class PrincipalActionHandler : MonoBehaviour, ClickableHandler {
 
     public void OnSelect(GameObject gameObject) {
         Debug.Log("Item " + gameObject.name + " Selected");
-       Enable(true);
+        this.gameObject = gameObject;
+        Enable(true);
     }
 
     public void OnUnselect(GameObject gameObject) {
         Debug.Log("Item " + gameObject.name + " Selected");
+        this.gameObject = null;
         Enable(false);
     }
 
