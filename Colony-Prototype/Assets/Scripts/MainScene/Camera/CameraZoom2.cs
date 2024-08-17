@@ -10,10 +10,7 @@ public class CameraZoom2 : MonoBehaviour {
     public float minZoom = 50f;
     public float deltaLevel = 10f;
 
-    private Camera camera;
-
     void Start() {
-        camera = GetComponent<Camera>();
     }
 
     void Update() {
@@ -26,7 +23,7 @@ public class CameraZoom2 : MonoBehaviour {
     }
 
     void Zoom() {
-        camera.fieldOfView = minZoom + zoomLevel*deltaLevel;
+        GetComponent<Camera>().fieldOfView = minZoom + zoomLevel*deltaLevel;
     }
 }
 

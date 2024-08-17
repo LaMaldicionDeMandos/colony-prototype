@@ -19,9 +19,12 @@ public class GoToMovement : MonoBehaviour {
 
     private void OnClick() {
         if (Input.GetMouseButtonDown(PRIMARY_MOUSE_BUTTON)) {
-            Vector3 mousePosition =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0;
-            goTo = mousePosition;
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = -Camera.main.transform.position.z; // Asegúrate de ajustar la profundidad según lo necesites
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            worldPosition.z = 0;
+            Debug.Log("Click on " + worldPosition);
+            goTo = worldPosition;
         }
     }
 

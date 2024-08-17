@@ -775,7 +775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomLevel: 1
-  minZoom: 51
+  minZoom: 50.1
   deltaLevel: 10
 --- !u!1001 &560371980
 PrefabInstance:
