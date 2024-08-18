@@ -27,6 +27,8 @@ public class PersonPanel : MonoBehaviour {
         GameObject personPanel = Instantiate(personPanelPrefab);       
         personPanel.transform.SetParent(transform);     
         RectTransform rect = personPanel.GetComponent<RectTransform>();
+        PersonPanelHandler personHandler = personPanel.GetComponent<PersonPanelHandler>();
+        personHandler.person = person;
         rect.anchoredPosition = new Vector2(x, 0f);
     }
 }
