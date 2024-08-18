@@ -7,4 +7,8 @@ public class PersonStats : MonoBehaviour {
     void Start() {}
 
     void Update() {}
+
+    public string personName {
+        get => spec.name;
+    }
 }
