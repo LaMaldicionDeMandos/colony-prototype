@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2304373693831275400}
   - component: {fileID: 9132473669557018152}
   - component: {fileID: 7711176604816189839}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 4780371282568101057}
   - component: {fileID: 435317887190941324}
   - component: {fileID: 3237398638699564666}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,8 +197,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.25
-  m_fontSizeBase: 0.25
+  m_fontSize: 0.3
+  m_fontSizeBase: 0.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4943bce32a98f514cb0c0a44b0d390aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerFactor: 1.25
 --- !u!1 &3752077652122671432
 GameObject:
   m_ObjectHideFlags: 0
