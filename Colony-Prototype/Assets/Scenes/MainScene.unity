@@ -587,7 +587,11 @@ PrefabInstance:
       value: 4291438362
     - target: {fileID: 4265465106262414858, guid: c5478a3434fc03644872131d30183397, type: 3}
       propertyPath: dream
-      value: 0.001
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5401290859170668220, guid: c5478a3434fc03644872131d30183397, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8946266058424988210, guid: c5478a3434fc03644872131d30183397, type: 3}
       propertyPath: m_RootOrder
