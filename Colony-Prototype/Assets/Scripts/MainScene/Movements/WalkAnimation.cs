@@ -60,7 +60,10 @@ public class WalkAnimation : Mortal, Movement {
     }
 
     public override void Sleep() {
-        Debug.Log("Durmiendo");
         this.enabled = false;
+    }
+
+    public override void WakeUp() {
+        this.enabled = true;
     }
 }

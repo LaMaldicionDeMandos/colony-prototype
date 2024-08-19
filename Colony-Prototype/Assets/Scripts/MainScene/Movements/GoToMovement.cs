@@ -43,7 +43,10 @@ public class GoToMovement : Mortal {
     }
 
     public override void Sleep() {
-        Debug.Log("Durmiendo");
         this.enabled = false;
+    }
+
+    public override void WakeUp() {
+        this.enabled = true;
     }
 }

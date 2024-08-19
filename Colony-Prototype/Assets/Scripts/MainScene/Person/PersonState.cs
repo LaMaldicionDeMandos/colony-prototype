@@ -56,6 +56,16 @@ public class PersonState : MonoBehaviour, LivingBeingEventHandler, ILivingBeingS
         sleeping = false;
         imSleepy = false;
         imVerySleepy = false;
+        WakeUpDisabledComponents();
+    }
+
+    private void WakeUpDisabledComponents() {
+        LivingBeingBase[] components = GetComponents<LivingBeingBase>();
+        foreach(LivingBeingBase component in components) {
+            if (!component.enabled) {
+                component.WakeUp();
+            }
+        }
     }
 
     public bool IsDied() {
