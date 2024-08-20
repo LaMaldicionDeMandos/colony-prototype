@@ -86,7 +86,7 @@ public class MapGenerator : MonoBehaviour {
         tilemap = GetComponent<Tilemap>();
         for(int x = -MapWidth/2; x < (MapWidth - MapWidth/2); x++) {
             for(int y = -MapHeigth/2; y < (MapHeigth - MapHeigth/2); y++) {
-                tilemap.SetTile(new Vector3Int(x, y, 0), tiles[x + MapWidth/2, y + MapHeigth/2]);    
+                tilemap.SetTile(new Vector3Int(x, y, 0), tiles[x + MapWidth/2, y + MapHeigth/2]);   
             }
         }
     }
