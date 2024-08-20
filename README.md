@@ -24,6 +24,9 @@ Es valor entre [0, 100], se consume en 2 días por lo tanto el valor baja a razo
 * **Llega a 68:** Si puede se va a dormir
 * **Llega a 0:** Se queda dormido 
 
+### Recupero al dormir
+Se recupera el 50% del sueño en 8 horas, por lo que sube a razon de 10m.
+
 ## Baño
 Es valor entre [0, 100], se consume en 12 horas por lo tanto el valor baja a razon de 8m.
 * **Llega a 33.33:** Si puede va al baño

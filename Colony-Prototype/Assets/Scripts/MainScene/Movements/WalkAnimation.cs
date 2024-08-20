@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WalkAnimation : MonoBehaviour, Movement {
+public class WalkAnimation : Mortal, Movement {
     private static Vector3 FORWARD_DIRECTION = Vector3.right;
     private static float MIN_UP_ANGLE = 45.0f;
     private static float MAX_UP_ANGLE = 135.0f;
@@ -19,8 +19,10 @@ public class WalkAnimation : MonoBehaviour, Movement {
 
     private Animator animator;
     private MovementState currentState = MovementState.STAND;
-    void Start() {
+
+    protected override void Start() {
         animator = GetComponent<Animator>();
+        base.Start();
     }
 
     private void ChangeState(MovementState state) {
@@ -55,5 +57,13 @@ public class WalkAnimation : MonoBehaviour, Movement {
         else if (angle < MIN_UP_ANGLE || angle > MAX_DOWN_ANGLE) state = MovementState.RIGHT_WALK;
         else state = MovementState.LEFT_WALK;
         return state;
+    }
+
+    public override void Sleep() {
+        this.enabled = false;
+    }
+
+    public override void WakeUp() {
+        this.enabled = true;
     }
 }

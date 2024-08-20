@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoToMovement : MonoBehaviour {
+public class GoToMovement : Mortal {
     private static int PRIMARY_MOUSE_BUTTON = 0;
 
     private Movement[] movementComponents;
     private Vector3 goTo;
-    void Start() {
+
+    protected override void Start() {
         movementComponents = GetComponents<Movement>();
         goTo = transform.position;
     }
@@ -39,5 +40,13 @@ public class GoToMovement : MonoBehaviour {
 
     private Vector3 CalculateDirection() {
         return (transform.position != goTo) ? Vector3.Normalize(goTo - transform.position) : Vector3.zero; 
+    }
+
+    public override void Sleep() {
+        this.enabled = false;
+    }
+
+    public override void WakeUp() {
+        this.enabled = true;
     }
 }

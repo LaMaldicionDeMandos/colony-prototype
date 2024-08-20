@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : MonoBehaviour, Movement {
-    public float Speed = 2.0f;
+public class Move : Mortal, Movement {
+    public float Speed = 1.0f;
     private Vector3 currentDirection = Vector3.zero;
-
-    void Start() {}
 
     void Update() {
         float scaleFactor = Speed*Time.deltaTime;
@@ -17,4 +15,12 @@ public class Move : MonoBehaviour, Movement {
     public void UpdateDirection(Vector3 direction) {
         currentDirection = direction;        
     } 
+
+    public override void Sleep() {
+        this.enabled = false;
+    }
+
+    public override void WakeUp() {
+        this.enabled = true;
+    }
 }
