@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Inventory : MonoBehaviour {
-    private ItemSpecManager itemSpecManager;
+    private ItemInventorySpecManager itemSpecManager;
     
     public GameObject Panel;
 
     private List<ItemInventory> inventory;
     void Start() {
-        itemSpecManager = new ItemSpecManager();
+        itemSpecManager = new ItemInventorySpecManager();
         inventory = new List<ItemInventory> { 
             new ItemInventory(itemSpecManager.items[0], 10), 
             new ItemInventory(itemSpecManager.items[1], 5),

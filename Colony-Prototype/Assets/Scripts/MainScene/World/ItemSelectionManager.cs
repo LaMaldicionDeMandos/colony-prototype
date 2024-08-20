@@ -27,6 +27,7 @@ public class ItemSelectionManager : MonoBehaviour {
     }
 
     private Dictionary<string, List<ClickableHandler>> handlers = new Dictionary<string, List<ClickableHandler>>();
+    private List<ClickableHandler> globalHandlers = new List<ClickableHandler>();
     void Start() { }
 
     void Update() {
@@ -57,6 +58,9 @@ public class ItemSelectionManager : MonoBehaviour {
                 handler.OnSelect(target);
             });
         }
+        globalHandlers.ForEach(delegate(ClickableHandler handler) {
+            handler.OnSelect(target);
+        });
     }
 
     private void TellUnselect(GameObject target) {
@@ -69,11 +73,19 @@ public class ItemSelectionManager : MonoBehaviour {
                 handler.OnUnselect(target);
             });
         }
+        globalHandlers.ForEach(delegate(ClickableHandler handler) {
+            handler.OnUnselect(target);
+        });
     }
+
 
     public void Subscribe(string clickableType, ClickableHandler handler) {
         if (!handlers.ContainsKey(clickableType)) handlers.Add(clickableType, new List<ClickableHandler>());
         List<ClickableHandler> list = handlers[clickableType];
         list.Add(handler);
+    }
+
+    public void Subscribe(ClickableHandler handler) {
+        globalHandlers.Add(handler);
     }
 }

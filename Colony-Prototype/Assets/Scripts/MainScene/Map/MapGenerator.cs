@@ -32,6 +32,8 @@ public class MapGenerator : MonoBehaviour {
 
     public GameObject[] mapElements;
 
+    public ItemSpec[] itemsSpecs;
+
     private List<GameObject> gameObjects;
 
     void Start() {
