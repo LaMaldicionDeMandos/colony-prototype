@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Inventory : MonoBehaviour {
-    private static int PRIMARY_MOUSE_BUTTON = 0;
     private ItemSpecManager itemSpecManager;
     
     public GameObject Panel;
@@ -20,9 +19,5 @@ public class Inventory : MonoBehaviour {
         ExecuteEvents.Execute<IUpdateInventoryEvent>(Panel, null, (x, y) => x.StartInventory(inventory));        
     }
 
-    void Update() {
-        if (Input.GetMouseButtonDown(PRIMARY_MOUSE_BUTTON)) {
-            inventory[1].amount+=3;
-        }
-    }
+    void Update() {}
 }

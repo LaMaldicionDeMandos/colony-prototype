@@ -4,5 +4,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public interface ClickableHandler : IEventSystemHandler {
-    void OnClick(GameObject gameObject);
+    void OnSelect(GameObject gameObject);
+    void OnUnselect(GameObject gameObject);
 }
