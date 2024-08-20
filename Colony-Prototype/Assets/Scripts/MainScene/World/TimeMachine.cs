@@ -21,7 +21,7 @@ public class TimeMachine : MonoBehaviour {
     private static string[] FORMATTED_MONTH = new string[] { "Spring", "Summer", "Fall", "Winter"};
 
     private float currentSecondFraction;
-    private int CurrentSecond;
+    public int CurrentSecond;
     public int CurrentMinute;
 
     public int CurrentHour;
@@ -65,6 +65,7 @@ public class TimeMachine : MonoBehaviour {
     public void OnForwardX3() {
         Time.timeScale = X4_SPEED;
     }
+
     private int UpdateTime(ref int time, int delta, int module) {
         time+= delta;
         if (time >= module) {
