@@ -16,10 +16,11 @@ public class CameraManager : MonoBehaviour {
     private static int MIN_LEVEL = 0;
     private static int MAX_LEVEL = 6;
 
-    private static float VELOCITY_FACTOR = 0.012f;
+    private static float VELOCITY_FACTOR = 0.025f;
 
     private PixelPerfectCamera pixelPerfectCamera;
     public int zoomLevel = 1;
+    public float edgeSize = 10.0f;
 
     void Start() {
         pixelPerfectCamera = GetComponent<PixelPerfectCamera>();
@@ -43,19 +44,55 @@ public class CameraManager : MonoBehaviour {
 		pixelPerfectCamera.refResolutionY = zoomY;
     }
 
-    void UpdateMove() {
+    private void UpdateMove() {
         float velocity = zoomLevel + 1;
+        UpdateMoveByKeys(velocity);
+        UpdateMoveByBorder(velocity);
+    }
+
+    private void MoveToLeft(float velocity) {
+        transform.position+= new Vector3(-velocity*VELOCITY_FACTOR, 0, 0);
+    }
+
+    private void MoveToRight(float velocity) {
+        transform.position+= new Vector3(velocity*VELOCITY_FACTOR, 0, 0);        
+    }
+
+    private void MoveToUp(float velocity) {
+        transform.position+= new Vector3(0, velocity*VELOCITY_FACTOR, 0);
+    }
+
+    private void MoveToDown(float velocity) {
+        transform.position+= new Vector3(0, -velocity*VELOCITY_FACTOR, 0);         
+    }
+
+    private void UpdateMoveByKeys(float velocity) {
         if (Input.GetKey(KeyCode.LeftArrow)) {
-            transform.position+= new Vector3(-velocity*VELOCITY_FACTOR, 0, 0); 
+            MoveToLeft(velocity);
         }
         if (Input.GetKey(KeyCode.RightArrow)) {
-            transform.position+= new Vector3(velocity*VELOCITY_FACTOR, 0, 0); 
+            MoveToRight(velocity);
         }
         if (Input.GetKey(KeyCode.UpArrow)) {
-            transform.position+= new Vector3(0, velocity*VELOCITY_FACTOR, 0); 
+            MoveToUp(velocity);
         }
         if (Input.GetKey(KeyCode.DownArrow)) {
-            transform.position+= new Vector3(0, -velocity*VELOCITY_FACTOR, 0); 
+            MoveToDown(velocity);
+        }
+    }
+
+    private void UpdateMoveByBorder(float velocity) {
+        if (Input.mousePosition.x >= Screen.width - edgeSize) {
+            MoveToRight(velocity);
+        }
+        if (Input.mousePosition.x < edgeSize) {
+            MoveToLeft(velocity);
+        }
+        if (Input.mousePosition.y < edgeSize) {
+            MoveToDown(velocity);
+        }
+        if (Input.mousePosition.y >= Screen.height - edgeSize) {
+            MoveToUp(velocity);
         }
     }
 }
