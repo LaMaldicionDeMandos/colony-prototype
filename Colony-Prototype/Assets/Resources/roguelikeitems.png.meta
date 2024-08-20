@@ -2181,13 +2181,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roguelikeitems_98
+      name: stick
       rect:
         serializedVersion: 2
         x: 0
         y: 49
-        width: 15
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3673,8 +3673,8 @@ TextureImporter:
       roguelikeitems_95: 45466006
       roguelikeitems_96: -1820414790
       roguelikeitems_97: -2129498606
-      roguelikeitems_98: -237480560
       roguelikeitems_99: 1853562212
+      stick: -237480560
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
