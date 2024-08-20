@@ -6,5 +6,5 @@ public class ElementSpawnSpec {
     public GameObject Element;
 
      [SerializeField]
-    public ElementSpawnCondition[] SpawnConditions;
+    public ItemSpawnCondition[] SpawnConditions;
 }
