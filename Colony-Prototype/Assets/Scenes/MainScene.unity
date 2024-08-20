@@ -380,6 +380,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Person
       objectReference: {fileID: 0}
+    - target: {fileID: 8016478589375459872, guid: c5478a3434fc03644872131d30183397, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8946266058424988210, guid: c5478a3434fc03644872131d30183397, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -762,6 +766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomLevel: 1
+  velocity: 0
 --- !u!114 &521074915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -771,12 +776,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a15346dded89e2f4797cb8dd781aa2a6, type: 3}
+  m_Script: {fileID: 11500000, guid: f4fdf8f8a722bde4bb811b803998c156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomLevel: 1
-  minZoom: 50.1
-  deltaLevel: 10
+  velocity: 1
 --- !u!1001 &560371980
 PrefabInstance:
   m_ObjectHideFlags: 0
