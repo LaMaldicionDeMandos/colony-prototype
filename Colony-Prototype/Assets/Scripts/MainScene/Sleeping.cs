@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Sleeping : MonoBehaviour {
     PersonState personState;
-    SpriteRenderer renderer;
+    SpriteRenderer spriteRenderer;
     void Start() {
         personState = GetComponentInParent<PersonState>();
-        renderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update() {
@@ -19,10 +19,10 @@ public class Sleeping : MonoBehaviour {
     }
 
     private void Sleep() {
-        renderer.enabled = true;
+        spriteRenderer.enabled = true;
     }
 
     private  void WakeUp() {
-        renderer.enabled = false;
+        spriteRenderer.enabled = false;
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PersonPanelHandler : MonoBehaviour, ClickableHandler {
+public class PersonStatusPanelHandler : MonoBehaviour, ClickableHandler {
     public string type;
 
     void Start() {

@@ -32,18 +32,20 @@ public class ItemSelectionManager : MonoBehaviour {
 
     void Update() {
        if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject()) {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-            if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Clickable")) {
-                GameObject clickedObject = hit.collider.gameObject;
-                Debug.Log("Has clickeado en: " + clickedObject.name);
-                if (currentObject != null) TellUnselect(currentObject);
-                currentObject = clickedObject;
-                TellClick(currentObject, currentObject);
+            Vector2 mousePosition = GetMousePosition();
+            if (mousePosition != null) {
+                RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+                if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Clickable")) {
+                    GameObject clickedObject = hit.collider.gameObject;
+                    Debug.Log("Has clickeado en: " + clickedObject.name);
+                    if (currentObject != null) TellUnselect(currentObject);
+                    currentObject = clickedObject;
+                    TellClick(currentObject, currentObject);
 
-            } else {
-                if (currentObject != null) TellUnselect(currentObject);
-                currentObject = null;
+                } else {
+                    if (currentObject != null) TellUnselect(currentObject);
+                    currentObject = null;
+                }
             }
         }
     }
@@ -87,5 +89,16 @@ public class ItemSelectionManager : MonoBehaviour {
 
     public void Subscribe(ClickableHandler handler) {
         globalHandlers.Add(handler);
+    }
+
+    private Vector3 GetMousePosition() {
+        Vector3 mousePosition = Input.mousePosition;
+        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+        Plane plane = new Plane(Vector3.forward, Vector3.zero);
+        float distance;
+        if (plane.Raycast(ray, out distance)) {
+            return ray.GetPoint(distance);
+        }
+        return mousePosition;
     }
 }
