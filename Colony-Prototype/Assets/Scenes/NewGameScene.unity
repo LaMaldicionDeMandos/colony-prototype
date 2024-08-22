@@ -610,7 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0edd8caf5902e4199646acc1bee63c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 2064457623}
+  mapGameObject: {fileID: 2064457623}
   config:
     width: 3
     heigth: 3

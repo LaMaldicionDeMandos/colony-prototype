@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MapSpecsManager : MonoBehaviour {
-    public static GameManager Instance;
+    public static MapSpecsManager Instance;
     private Map _map;
 
     public Map map {
