@@ -3,8 +3,14 @@ using TMPro;
 using Faker;
 
 public class Seed : MonoBehaviour {
-    public string seed;
+    public string seedName;
+    private int _seed;
     private TMP_InputField seedInput;
+    
+    public int seed {
+        get => _seed;
+    }
+
     void Start() {
         seedInput = FindSeedInput();
         CalculateSeed();
@@ -16,10 +22,17 @@ public class Seed : MonoBehaviour {
         CalculateSeed();
     }
 
+    public void GenerateSeed() {
+        seedName = seedInput.text;
+        _seed = seedName.GetHashCode();
+        MapGenerationComponent map = GetComponent<MapGenerationComponent>();
+        map.GenerateMap(_seed);
+    }
+
     private void CalculateSeed() {
-        seed = Faker.Name.First();
-        seedInput.text = seed;
-        Debug.Log("Hash Code: " + seed.GetHashCode());
+        seedName = Faker.Name.First();
+        seedInput.text = seedName;
+        Debug.Log("Hash Code: " + seedName.GetHashCode());
     }
 
     private TMP_InputField FindSeedInput() {
