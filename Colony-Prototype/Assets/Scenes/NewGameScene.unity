@@ -612,8 +612,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapGameObject: {fileID: 2064457623}
   config:
-    width: 3
-    heigth: 3
+    width: 200
+    heigth: 200
     noise: 2.2
     terrains:
     - terrainName: deepWater
@@ -1324,7 +1324,7 @@ GameObject:
   - component: {fileID: 2064457625}
   m_Layer: 0
   m_Name: MapSpec
-  m_TagString: Untagged
+  m_TagString: MapSpec
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

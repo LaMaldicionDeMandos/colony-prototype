@@ -10,13 +10,6 @@ public class MapSpecsManager : MonoBehaviour {
         get => _map;
         set {
             _map = value;
-            Debug.Log("Width: " + _map.width + ", Heigth: " + _map.heigth);
-            for( int i = 0; i < _map.width; i++) {
-                Debug.Log("-------------------------------------");
-                for( int j = 0; j < _map.heigth; j++) {
-                    Debug.Log(_map.terrainMatrix[i, j].terrainName);
-                }
-            }
         }
     }
 

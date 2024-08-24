@@ -1,19 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class MapGenerator : MonoBehaviour {
     private static float Z_PROSITION = 0.0f;
-    public int MapWidth;
-    public int MapHeigth;
-    public float NoiseScale;
-
-    public float WaterFactor;
-    public float SandFactor;
-    public float GrassFactor;
-    public float MoutainFactor;
 
     public double StonePercent;
     public double MountainPercent;
@@ -36,62 +32,63 @@ public class MapGenerator : MonoBehaviour {
 
     private List<GameObject> gameObjects;
 
+    private MapSpecsManager mapSpecManager;
+
     void Start() {
-        int seed = UnityEngine.Random.Range(0, 10000);
-        rng = new System.Random(seed);
-        float sum = WaterFactor + SandFactor + GrassFactor + MoutainFactor;
-        float waterLimit = WaterFactor/sum;
-        float sandLimit = waterLimit + SandFactor/sum;
-        float grassLimit = sandLimit + GrassFactor/sum;
-        float mountainLimit = grassLimit + MoutainFactor/sum;
-        Tuple<float, float>[] ranges = new Tuple<float, float>[] {
-            new Tuple<float, float>(0.0f, waterLimit),
-            new Tuple<float, float>(waterLimit, sandLimit),
-            new Tuple<float, float>(sandLimit, grassLimit),
-            new Tuple<float, float>(grassLimit, mountainLimit)
-        };
-        MakeMap(seed, ranges);
-        MakeThings();
+        mapSpecManager = GameObject.FindWithTag("MapSpec").GetComponent<MapSpecsManager>();
+        Map map = mapSpecManager.map;
+        MakeMap(map);
+        //MakeThings();
+    
     }
 
     void Update() {
         
     }
 
-    private float[,] GenerateNoiseMap(int mapWidth, int mapHeigth, float elevationScale, int seed) {
-        float[,] noiseMap = new float[mapWidth, mapHeigth];
-        System.Random rand = new System.Random(seed);
 
-        float offsetX = rand.Next(-100000, 100000);
-        float offsetY = rand.Next(-100000, 100000);
-
-        for (int i = 0; i < mapWidth; i++) {
-            for (int j = 0; j < mapHeigth; j++) {
-                float x = (float)i / mapWidth * elevationScale + offsetX;
-                float y = (float)j / mapHeigth * elevationScale + offsetY;
-                noiseMap[i, j] = Mathf.PerlinNoise(x, y);
+    private async void MakeMap(Map map) { 
+        TileBase[,] tiles = new TileBase[map.width, map.heigth];
+        ISet<AsyncOperationHandle<TileBase>> loadTasks = LoadTiles(map);
+        IEnumerable<Task<TileBase>> tasks = loadTasks.Select(h => h.Task);
+        Dictionary<string, TileBase> tileBases = new Dictionary<string, TileBase>();
+        foreach (Task<TileBase> task in tasks) {
+            TileBase tile = await task;
+            tileBases.Add(tile.name, tile);
+        }
+        for(int i = 0; i < map.width; i++) {
+            for(int j = 0; j < map.heigth; j++) {
+                Debug.Log("Creating Tile from: " + map.terrainMatrix[i,j].terrainName);
+                tiles[i, j] = tileBases[map.terrainMatrix[i,j].tileRuleName];
             }
         }
 
-        return noiseMap;
-    }
-
-    private void MakeMap(int seed, Tuple<float, float>[] terrainRanges) {
-        float[,] noiseMap = GenerateNoiseMap(MapWidth, MapHeigth, NoiseScale, seed); 
-        TileBase[,] tiles = new TileBase[MapWidth, MapHeigth];
-        for(int i = 0; i < MapWidth; i++) {
-            for(int j = 0; j < MapHeigth; j++) {
-                int terrainIndex = GetTerrainIndex(Mathf.Clamp(noiseMap[i, j], 0.0f, 1.0f), terrainRanges);
-                tiles[i, j] = tile[terrainIndex];
-            }
-        }
         tilemap = GetComponent<Tilemap>();
-        for(int x = -MapWidth/2; x < (MapWidth - MapWidth/2); x++) {
-            for(int y = -MapHeigth/2; y < (MapHeigth - MapHeigth/2); y++) {
-                tilemap.SetTile(new Vector3Int(x, y, 0), tiles[x + MapWidth/2, y + MapHeigth/2]);   
+        for(int x = -map.width/2; x < (map.width - map.width/2); x++) {
+            for(int y = -map.heigth/2; y < (map.heigth - map.heigth/2); y++) {
+                tilemap.SetTile(new Vector3Int(x, y, 0), tiles[x + map.width/2, y + map.heigth/2]);   
             }
         }
     }
+
+
+
+    private ISet<string> GetTileTypes(Map map) {
+        ISet<string> tileTypes = new HashSet<string>();
+        for(int i = 0; i < map.width; i++) {
+            for(int j = 0; j < map.heigth; j++) {
+                tileTypes.Add(map.terrainMatrix[i,j].tileRuleName);
+            }
+        }
+        return tileTypes;
+    }
+
+    private ISet<AsyncOperationHandle<TileBase>> LoadTiles(Map map) {
+        ISet<string> tileTypes = GetTileTypes(map);
+        ISet<AsyncOperationHandle<TileBase>> loadTasks = tileTypes.Select(typeName => Addressables.LoadAssetAsync<TileBase>(typeName)).ToHashSet();
+        return loadTasks;
+    }
+
 
     private int GetTerrainIndex(float noise, Tuple<float, float>[] ranges) {
         for(int i = 0; i < 4; i++) {
@@ -101,6 +98,7 @@ public class MapGenerator : MonoBehaviour {
     }
 
     private void MakeThings() {
+        /*
         gameObjects = new List<GameObject>();
         for(int x = -MapWidth/2; x < (MapWidth - MapWidth/2); x++) {
             for(int y = -MapHeigth/2; y < (MapHeigth - MapHeigth/2); y++) {
@@ -108,6 +106,7 @@ public class MapGenerator : MonoBehaviour {
                 AddThingToTile(tile, x, y);
             }
         }
+        */
     }
 
     private void AddThingToTile(TileBase tile, int x, int y) {

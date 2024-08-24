@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b81de1f4014c55d40b49a0a2467302fe
+  m_SerializeEntries:
+  - m_GUID: ff0388cb52ae5b34eb4384bb1a3ed66d
+    m_Address: DeepWater_Tile_Rule
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a93cf5d220e37e34185bee5fdfefa889
+    m_Address: Assets/Tile_Rules/Grass_Tile_Rule.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8cbb1ad3715a4644db62baa6b296b156
+    m_Address: Assets/Tile_Rules/Montain_Tile_Rule.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6b6dca21b5ed32b42bff1ffed9982640
+    m_Address: RuleWater
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9636d00714a6609418f299437cabe0ff
+    m_Address: Sand_Tile_Rule
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a6582c1f19c9bd540b2592a3216c3283, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3ecce319a0a12d448b24fae2df6d350a, type: 2}
+    - {fileID: 11400000, guid: 2bb321a0e73ae4e419210d4e2dc2c6ef, type: 2}
