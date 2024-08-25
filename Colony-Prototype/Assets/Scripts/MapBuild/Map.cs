@@ -92,9 +92,10 @@ public class Map {
         return false;
     }
 
-    public readonly int width;
-    public readonly int heigth;
+    public int width;
+    public int heigth;
 
+    [SerializeField]
     public readonly TerrainSpec[,] terrainMatrix;
     public readonly List<Tuple<string, Vector2>> items;
 

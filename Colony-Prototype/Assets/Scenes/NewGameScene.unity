@@ -618,13 +618,13 @@ MonoBehaviour:
     terrains:
     - terrainName: deepWater
       tileRuleName: DeepWater_Tile_Rule
-      weight: 15
+      weight: 10
     - terrainName: water
       tileRuleName: RuleWater
-      weight: 10
+      weight: 4
     - terrainName: sand
       tileRuleName: Sand_Tile_Rule
-      weight: 25
+      weight: 15
     itemSpecs: []
 --- !u!1001 &1057469113
 PrefabInstance:
